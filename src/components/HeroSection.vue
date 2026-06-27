@@ -5,6 +5,8 @@ import IconLink from './IconLink.vue'
 const props = defineProps({
   profile: { type: Object, required: true },
   socials: { type: Array, default: () => [] },
+  // スクロールを促すヒント文言（空文字で非表示）
+  scrollHint: { type: String, default: 'Scroll' },
 })
 
 const initials = computed(() =>
@@ -54,8 +56,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       </div>
     </div>
 
-    <div class="scroll-hint" aria-hidden="true">
-      <span>Scroll</span>
+    <div v-if="scrollHint" class="scroll-hint" aria-hidden="true">
+      <span>{{ scrollHint }}</span>
       <span class="scroll-hint__line"></span>
     </div>
   </section>

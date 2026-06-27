@@ -1,7 +1,26 @@
 // =============================================================
 //  サイトに表示する内容はこのファイルを編集するだけで変更できます。
-//  各セクションは配列に項目を足すだけでカードが増えます。
+//  人によって変わるもの（名前・リンク・各セクションの中身）は
+//  すべてここ（config）に集約しています。コンポーネントは触りません。
 // =============================================================
+
+// -------------------------------------------------------------
+//  サイト全体の設定（ブラウザのタブ・言語・フッターなど）
+// -------------------------------------------------------------
+export const site = {
+  // ブラウザのタブ／検索結果に出るタイトル
+  title: 'Your Name — Profile',
+  // 検索エンジンなどに渡す説明文
+  description: 'Webサイト・Discord Bot・Minecraft Plugin をつくっています。',
+  // ページの言語（<html lang> に反映）
+  lang: 'ja',
+  // フッターの著作権表記に使う名前（空なら profile.name を使用）
+  copyright: '',
+  // ヒーロー下のスクロール案内（空文字にすると非表示）
+  scrollHint: 'Scroll',
+  // カードの「開く」ボタンの文言
+  cardCta: 'ひらく',
+}
 
 // -------------------------------------------------------------
 //  プロフィール（ヒーロー部分）
@@ -20,6 +39,7 @@ export const profile = {
 
 // -------------------------------------------------------------
 //  プロフィール上部のソーシャルリンク（任意・空配列で非表示）
+//  Discord・X・GitHub など、人によって変わるリンクをここに並べます。
 //  アイコンの指定方法は 2 通り:
 //   1) icon: 組み込みアイコン名を使う
 //      github / x / twitter / instagram / youtube / linkedin /
@@ -36,11 +56,14 @@ export const socials = [
 ]
 
 // -------------------------------------------------------------
-//  運用しているWebサイト
-//  emoji と accent でカードの色味・アイコンが変わります（画像なしでもOK）
-//  image を指定するとスクリーンショットを表示します。
+//  各セクションのカード一覧
+//  emoji と accent でカードの色味・アイコンが変わります（画像なしでもOK）。
+//  image を指定すると public/ のスクリーンショット等を表示します。
+//  1 つでも複数でも、カードは中央寄せで横に並びます。
 // -------------------------------------------------------------
-export const websites = [
+
+// 運用しているWebサイト
+const websites = [
   {
     name: 'My Website',
     url: 'https://example.com',
@@ -48,7 +71,7 @@ export const websites = [
     emoji: '🌐',
     accent: '#c98a5e', // キャラメル
     tags: ['Web', 'Vue'],
-    // image: '/shots/website.png',
+    // image: '/shots/website.png', // public/ に置いた画像を表示
   },
   {
     name: 'Another Site',
@@ -60,10 +83,8 @@ export const websites = [
   },
 ]
 
-// -------------------------------------------------------------
-//  運用 / 開発している Discord Bot
-// -------------------------------------------------------------
-export const discordBots = [
+// 運用 / 開発している Discord Bot
+const discordBots = [
   {
     name: 'My Discord Bot',
     url: 'https://discord.com/',
@@ -76,10 +97,8 @@ export const discordBots = [
   },
 ]
 
-// -------------------------------------------------------------
-//  作っている Minecraft Plugin
-// -------------------------------------------------------------
-export const minecraftPlugins = [
+// 作っている Minecraft Plugin
+const minecraftPlugins = [
   {
     name: 'My Plugin',
     url: 'https://www.spigotmc.org/',
@@ -88,5 +107,39 @@ export const minecraftPlugins = [
     accent: '#7d9b6f', // モスグリーン
     tags: ['Paper', 'Spigot'],
     stat: '10k downloads',
+  },
+]
+
+// -------------------------------------------------------------
+//  表示するセクション（順番・見出し・中身をここで定義）
+//  セクションを足す/消す/並べ替えるのもこの配列を編集するだけ。
+//   eyebrow  : 見出しの上の小ラベル
+//   title    : 見出し
+//   subtitle : 見出し下の説明（空で非表示）
+//   variant  : カードの登場アニメ
+//              rise / flip-x / mask-up / zoom-rotate / skew / unblur / wipe
+//   items    : 上で定義したカード配列
+// -------------------------------------------------------------
+export const sections = [
+  {
+    eyebrow: 'Websites',
+    title: '運用しているWebサイト',
+    subtitle: '制作・運用しているサイトの紹介です。',
+    variant: 'flip-x',
+    items: websites,
+  },
+  {
+    eyebrow: 'Discord Bots',
+    title: 'Discord Bot',
+    subtitle: '開発・運用しているDiscord Botの紹介です。',
+    variant: 'mask-up',
+    items: discordBots,
+  },
+  {
+    eyebrow: 'Minecraft Plugins',
+    title: 'Minecraft Plugin',
+    subtitle: '作っているMinecraftプラグインの紹介です。',
+    variant: 'zoom-rotate',
+    items: minecraftPlugins,
   },
 ]

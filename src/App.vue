@@ -1,53 +1,39 @@
 <script setup>
+import { computed } from 'vue'
 import ScrollProgress from './components/ScrollProgress.vue'
 import HeroSection from './components/HeroSection.vue'
 import ShowcaseSection from './components/ShowcaseSection.vue'
-import {
-  profile,
-  socials,
-  websites,
-  discordBots,
-  minecraftPlugins,
-} from './data/profile.js'
+import { site, profile, socials, sections } from './data/profile.js'
 
 const year = new Date().getFullYear()
+// フッターの名前は site.copyright を優先し、無ければ profile.name
+const copyrightName = computed(() => site.copyright || profile.name)
 </script>
 
 <template>
   <ScrollProgress />
 
   <main>
-    <!-- 1. プロフィール（画像・名前・称号） -->
-    <HeroSection :profile="profile" :socials="socials" />
-
-    <!-- 2. 運用しているWebサイト -->
-    <ShowcaseSection
-      eyebrow="Websites"
-      title="運用しているWebサイト"
-      subtitle="制作・運用しているサイトの紹介です。"
-      :items="websites"
-      variant="flip-x"
+    <!-- プロフィール（画像・名前・称号） -->
+    <HeroSection
+      :profile="profile"
+      :socials="socials"
+      :scroll-hint="site.scrollHint"
     />
 
-    <!-- 3. Discord Bot -->
+    <!-- 各セクション（config の sections を順番に表示） -->
     <ShowcaseSection
-      eyebrow="Discord Bots"
-      title="Discord Bot"
-      subtitle="開発・運用しているDiscord Botの紹介です。"
-      :items="discordBots"
-      variant="mask-up"
+      v-for="section in sections"
+      :key="section.title"
+      :eyebrow="section.eyebrow"
+      :title="section.title"
+      :subtitle="section.subtitle"
+      :items="section.items"
+      :variant="section.variant"
+      :cta="site.cardCta"
     />
 
-    <!-- 4. Minecraft Plugin -->
-    <ShowcaseSection
-      eyebrow="Minecraft Plugins"
-      title="Minecraft Plugin"
-      subtitle="作っているMinecraftプラグインの紹介です。"
-      :items="minecraftPlugins"
-      variant="zoom-rotate"
-    />
-
-    <footer class="footer">© {{ year }} {{ profile.name }}</footer>
+    <footer class="footer">© {{ year }} {{ copyrightName }}</footer>
   </main>
 </template>
 

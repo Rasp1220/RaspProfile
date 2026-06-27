@@ -10,6 +10,10 @@ defineProps({
   items: { type: Array, default: () => [] },
   // カードの登場アニメ（reveal.css の variant）
   variant: { type: String, default: 'rise' },
+  // カードの「開く」ボタンの文言
+  cta: { type: String, default: 'ひらく' },
+  // 項目が無いときの表示
+  emptyText: { type: String, default: '準備中です。' },
 })
 </script>
 
@@ -30,10 +34,11 @@ defineProps({
         :item="item"
         :variant="variant"
         :index="i"
+        :cta="cta"
       />
     </div>
 
-    <p v-else class="empty" v-reveal>準備中です。</p>
+    <p v-else class="empty" v-reveal>{{ emptyText }}</p>
   </section>
 </template>
 
@@ -46,6 +51,7 @@ defineProps({
 
 .section__head {
   margin-bottom: 2.5rem;
+  text-align: center;
 }
 
 .eyebrow {
@@ -66,16 +72,25 @@ defineProps({
 }
 
 .section__sub {
-  margin: 1rem 0 0;
+  margin: 1rem auto 0;
   max-width: 36rem;
   color: var(--text-muted);
   line-height: 1.7;
 }
 
+/* 1つでも複数でも常に中央寄せで横並び。多いときは折り返す。 */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.25rem;
+}
+
+/* 各カード（子コンポーネントのルート）の横幅。伸びすぎず中央に集まる。 */
+.grid > * {
+  flex: 0 1 19rem;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .empty {
