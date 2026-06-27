@@ -23,6 +23,15 @@ export const site = {
 }
 
 // -------------------------------------------------------------
+//  ナビゲーション（ページ上部のリンク）
+//  to はハッシュルート。ページを足したら 1 行追加するだけ。
+// -------------------------------------------------------------
+export const nav = [
+  { label: 'Home', to: '/' },
+  { label: 'Skill', to: '/skill' },
+]
+
+// -------------------------------------------------------------
 //  プロフィール（ヒーロー部分）
 // -------------------------------------------------------------
 export const profile = {
@@ -141,5 +150,66 @@ export const sections = [
     subtitle: '作っているMinecraftプラグインの紹介です。',
     variant: 'zoom-rotate',
     items: minecraftPlugins,
+  },
+]
+
+// =============================================================
+//  SKILL ページ（#/skill）
+// =============================================================
+
+// -------------------------------------------------------------
+//  SKILL ページのヘッダー（ヒーローと同じスタイルを適用）
+//  accent / accent2 でこのページだけ色味を変えられます。
+// -------------------------------------------------------------
+export const skillPage = {
+  // 上の小ラベル
+  eyebrow: 'Skills',
+  // 大きな見出し（profile.name と同じ表示スタイル）
+  name: 'Skill Set',
+  // 称号バッジ（"Creator & Developer" と同じスタイル）
+  badge: 'Languages・Frameworks・Infra',
+  // ひとことキャッチ
+  tagline: '普段つかっている技術スタックをまとめています。',
+  // このページのテーマ色（プロフィールのキャラメルから少し変える）
+  accent: '#6d7fa6', // ダスティブルー
+  accent2: '#9aa9c9', // ライトブルーグレー
+}
+
+// -------------------------------------------------------------
+//  スキル一覧（カテゴリごとに複数定義できます）
+//   category : 見出し（Languages / Frameworks / Infra など）
+//   emoji    : 見出し横のアイコン
+//   items    : スキル名の配列
+//              文字列だけ、もしくは { name, note } で補足を付けられます。
+//                'TypeScript'                     … 名前だけ
+//                { name: 'AWS', note: 'メイン' }  … 補足つき
+// -------------------------------------------------------------
+export const skills = [
+  {
+    category: 'Languages',
+    emoji: '💬',
+    items: [
+      { name: 'TypeScript', note: 'メイン' },
+      'JavaScript',
+      'Python',
+      'Java',
+      'Go',
+    ],
+  },
+  {
+    category: 'Frameworks',
+    emoji: '🧩',
+    items: [
+      { name: 'Vue', note: 'メイン' },
+      'React',
+      'Node.js',
+      'discord.js',
+      'Paper / Spigot',
+    ],
+  },
+  {
+    category: 'Infrastructure',
+    emoji: '🛠️',
+    items: ['Docker', 'AWS', 'Cloudflare', 'GitHub Actions', 'Linux'],
   },
 ]

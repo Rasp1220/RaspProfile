@@ -1,37 +1,33 @@
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import ScrollProgress from './components/ScrollProgress.vue'
-import HeroSection from './components/HeroSection.vue'
-import ShowcaseSection from './components/ShowcaseSection.vue'
-import { site, profile, socials, sections } from './data/profile.js'
+import SiteNav from './components/SiteNav.vue'
+import HomeView from './views/HomeView.vue'
+import SkillView from './views/SkillView.vue'
+import { site, profile } from './data/profile.js'
+
+// 依存を増やさない軽量なハッシュルーティング（#/ と #/skill）
+const parseRoute = () => window.location.hash.replace(/^#/, '') || '/'
+const route = ref(parseRoute())
+
+const onHashChange = () => {
+  route.value = parseRoute()
+  window.scrollTo(0, 0)
+}
+onMounted(() => window.addEventListener('hashchange', onHashChange))
+onBeforeUnmount(() => window.removeEventListener('hashchange', onHashChange))
 
 const year = new Date().getFullYear()
-// フッターの名前は site.copyright を優先し、無ければ profile.name
 const copyrightName = computed(() => site.copyright || profile.name)
 </script>
 
 <template>
   <ScrollProgress />
+  <SiteNav :current="route" />
 
   <main>
-    <!-- プロフィール（画像・名前・称号） -->
-    <HeroSection
-      :profile="profile"
-      :socials="socials"
-      :scroll-hint="site.scrollHint"
-    />
-
-    <!-- 各セクション（config の sections を順番に表示） -->
-    <ShowcaseSection
-      v-for="section in sections"
-      :key="section.title"
-      :eyebrow="section.eyebrow"
-      :title="section.title"
-      :subtitle="section.subtitle"
-      :items="section.items"
-      :variant="section.variant"
-      :cta="site.cardCta"
-    />
+    <SkillView v-if="route === '/skill'" />
+    <HomeView v-else />
 
     <footer class="footer">© {{ year }} {{ copyrightName }}</footer>
   </main>
