@@ -71,7 +71,7 @@ defineProps({
 .scard:hover {
   transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  box-shadow: 0 24px 50px -24px color-mix(in srgb, var(--accent) 60%, black);
+  box-shadow: 0 26px 50px -26px color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
 .scard__media {
@@ -150,7 +150,7 @@ defineProps({
   padding: 0.22rem 0.6rem;
   border-radius: 999px;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-soft);
   border: 1px solid var(--card-border);
 }
 

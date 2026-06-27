@@ -1,18 +1,23 @@
 :root {
-  /* カラーテーマ（ここを変えるとサイト全体の色味が変わります） */
-  --bg: #0b0d12;
-  --bg-soft: #12151d;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --text: #e8eaf0;
-  --text-muted: #9aa3b2;
-  --accent: #7c5cff;
-  --accent-2: #38bdf8;
-  --accent-grad: linear-gradient(135deg, #7c5cff 0%, #38bdf8 100%);
+  /* カラーテーマ：モダンなカフェ（温かいクリーム × エスプレッソ × キャラメル） */
+  --bg: #f7f2ec; /* クリーム地 */
+  --bg-soft: #efe6d8; /* 少し濃いベージュ */
+  --card: #fffdf9; /* 温かみのある白 */
+  --card-border: #e7ddcd; /* 柔らかいタン */
+  --text: #2c2620; /* エスプレッソ */
+  --text-muted: #8a7c6b; /* ラテブラウン */
+  --accent: #b07a4e; /* キャラメル */
+  --accent-2: #d6a15e; /* ハニー */
+  --accent-grad: linear-gradient(135deg, #a96b3d 0%, #d6a15e 100%);
+  --glow: rgba(176, 122, 78, 0.3); /* 温かい影／光 */
 
-  --radius: 18px;
-  --radius-sm: 12px;
-  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  /* フォント */
+  --font-sans: 'Inter', 'Noto Sans JP', system-ui, -apple-system, sans-serif;
+  --font-display: 'Fraunces', 'Noto Serif JP', Georgia, serif;
+
+  --radius: 20px;
+  --radius-sm: 14px;
+  --shadow: 0 22px 50px -24px rgba(80, 55, 35, 0.35);
 }
 
 * {
@@ -26,7 +31,7 @@ body {
 }
 
 body {
-  font-family: 'Inter', 'Noto Sans JP', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans);
   color: var(--text);
   background: var(--bg);
   min-height: 100vh;
@@ -34,7 +39,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* 背景のグラデーション＋ぼかしのオーラ */
+/* 背景：上からそそぐ温かい陽だまりのようなグラデーション */
 body::before {
   content: '';
   position: fixed;
@@ -42,18 +47,18 @@ body::before {
   z-index: -1;
   background:
     radial-gradient(
-      40rem 40rem at 15% -10%,
-      rgba(124, 92, 255, 0.25),
+      42rem 42rem at 12% -12%,
+      rgba(214, 161, 94, 0.28),
       transparent 60%
     ),
     radial-gradient(
-      36rem 36rem at 100% 10%,
-      rgba(56, 189, 248, 0.18),
-      transparent 55%
+      36rem 36rem at 100% 8%,
+      rgba(176, 122, 78, 0.18),
+      transparent 58%
     ),
     radial-gradient(
-      30rem 30rem at 50% 120%,
-      rgba(124, 92, 255, 0.12),
+      32rem 32rem at 50% 120%,
+      rgba(214, 161, 94, 0.14),
       transparent 60%
     );
   pointer-events: none;
@@ -65,5 +70,5 @@ a {
 }
 
 ::selection {
-  background: rgba(124, 92, 255, 0.4);
+  background: rgba(176, 122, 78, 0.25);
 }

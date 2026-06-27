@@ -37,7 +37,7 @@ export const websites = [
     url: 'https://example.com',
     description: '運用しているWebサイトの説明をここに書きます。',
     emoji: '🌐',
-    accent: '#38bdf8',
+    accent: '#c98a5e', // キャラメル
     tags: ['Web', 'Vue'],
     // image: '/shots/website.png',
   },
@@ -46,7 +46,7 @@ export const websites = [
     url: 'https://example.com',
     description: 'もう一つのサイトの紹介文。',
     emoji: '✨',
-    accent: '#a855f7',
+    accent: '#8a9a6b', // セージグリーン
     tags: ['Blog'],
   },
 ]
@@ -60,7 +60,7 @@ export const discordBots = [
     url: 'https://discord.com/',
     description: 'Botでできることを説明します。',
     emoji: '🤖',
-    accent: '#5865f2',
+    accent: '#6f7f9c', // くすんだダスティブルー
     tags: ['Moderation', 'Music'],
     // 任意の数値（サーバー数など）。空にすると非表示
     stat: '1,200 servers',
@@ -76,7 +76,7 @@ export const minecraftPlugins = [
     url: 'https://www.spigotmc.org/',
     description: 'プラグインの機能を説明します。',
     emoji: '🧱',
-    accent: '#22c55e',
+    accent: '#7d9b6f', // モスグリーン
     tags: ['Paper', 'Spigot'],
     stat: '10k downloads',
   },

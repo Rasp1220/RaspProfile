@@ -59,9 +59,10 @@ defineProps({
 }
 
 .section__title {
+  font-family: var(--font-display);
   font-size: clamp(1.8rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .section__sub {

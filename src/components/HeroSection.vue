@@ -87,7 +87,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   place-items: center;
   background: var(--accent-grad);
   padding: 3px;
-  box-shadow: 0 18px 50px -14px rgba(124, 92, 255, 0.65);
+  box-shadow: 0 18px 50px -14px var(--glow);
   animation: float 6s ease-in-out infinite;
 }
 
@@ -111,9 +111,10 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
 .name {
   margin: 0;
+  font-family: var(--font-display);
   font-size: clamp(2.2rem, 7vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.05;
 }
 
@@ -126,7 +127,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
   font-weight: 600;
   color: #fff;
   background: var(--accent-grad);
-  box-shadow: 0 8px 24px -8px rgba(124, 92, 255, 0.7);
+  box-shadow: 0 8px 24px -8px var(--glow);
 }
 
 .tagline {
@@ -160,8 +161,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 
 .social:hover {
   transform: translateY(-3px);
-  color: var(--text);
-  border-color: rgba(124, 92, 255, 0.5);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .scroll-hint {

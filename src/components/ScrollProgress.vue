@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 .progress__bar {
   height: 100%;
   background: var(--accent-grad);
-  box-shadow: 0 0 12px rgba(124, 92, 255, 0.7);
+  box-shadow: 0 0 12px var(--glow);
   transition: width 0.1s linear;
 }
 </style>
