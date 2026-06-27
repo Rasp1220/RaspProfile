@@ -1,7 +1,8 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
+import MainVisualSlider from '../components/MainVisualSlider.vue'
 import ShowcaseSection from '../components/ShowcaseSection.vue'
-import { site, profile, socials, sections } from '../data/profile.js'
+import { site, profile, socials, sections, mainVisual } from '../data/profile.js'
 </script>
 
 <template>
@@ -11,6 +12,9 @@ import { site, profile, socials, sections } from '../data/profile.js'
     :socials="socials"
     :scroll-hint="site.scrollHint"
   />
+
+  <!-- メインビジュアルのスライダー（Scroll マークの先・カルーセル） -->
+  <MainVisualSlider :images="mainVisual.images" :interval="mainVisual.interval" />
 
   <!-- 各セクション（config の sections を順番に表示） -->
   <ShowcaseSection

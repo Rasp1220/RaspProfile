@@ -48,6 +48,7 @@ npm run preview  # ビルド結果をローカルで確認
 | `site`      | タブのタイトル・説明・言語・フッター名・スクロール文言など  |
 | `nav`       | メニューの単純リンク（Home / SKILL など。1 行追加で増やせる）|
 | `profile`   | 名前・称号・キャッチ・アバター                             |
+| `mainVisual`| ヒーロー下のメインビジュアル・スライダー（`images` / `interval`）。画像を足すだけでカルーセルになります |
 | `socials`   | プロフィール上部のソーシャルリンク（Discord・X・GitHub …） |
 | `sections`  | 各セクション（`key` / `base` / `menuLabel` ＋ カード一覧）。**足す・消す・並べ替え自由** |
 | `skillPage` | Skill ページの見出し・キャッチ・テーマ色（`accent` / `accent2`） |
@@ -128,8 +129,14 @@ export const skills = [
 | 指定          | 例                            | 置き場所            |
 | ------------- | ----------------------------- | ------------------- |
 | アバター      | `avatar: '/avatar.png'`       | `public/avatar.png` |
+| メインビジュアル | `images: ['/visuals/01.jpg']` | `public/visuals/`   |
 | ソーシャル    | `image: '/icons/github.svg'`  | `public/icons/`     |
 | カード画像    | `image: '/shots/website.png'` | `public/shots/`     |
+
+メインビジュアルは `mainVisual.images` に画像パスを並べるだけで、複数登録すると
+自動再生のカルーセル（前後ボタン・ドット付き）になります。`interval` で切り替え
+間隔(ミリ秒)を、`0` にすると自動再生を止められます。`images` が空ならスライダー
+自体を非表示にします。
 
 ソーシャルアイコンは `image`（`public/` のパス）を指定するとその画像を、
 未指定なら `icon`（`github` / `x` / `discord` …）で組み込みSVGを表示します。

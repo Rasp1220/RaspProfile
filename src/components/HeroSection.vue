@@ -81,8 +81,8 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
 }
 
 .avatar {
-  width: 132px;
-  height: 132px;
+  width: clamp(160px, 26vw, 200px);
+  height: clamp(160px, 26vw, 200px);
   margin: 0 auto 1.5rem;
   border-radius: 50%;
   display: grid;
