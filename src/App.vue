@@ -1,14 +1,21 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import ScrollProgress from './components/ScrollProgress.vue'
-import SiteNav from './components/SiteNav.vue'
+import HamburgerMenu from './components/HamburgerMenu.vue'
 import HomeView from './views/HomeView.vue'
 import SkillView from './views/SkillView.vue'
+import { resolveDetail } from './views/details/index.js'
 import { site, profile } from './data/profile.js'
 
-// 依存を増やさない軽量なハッシュルーティング（#/ と #/skill）
+// 依存を増やさない軽量なハッシュルーティング
+//   #/         → Home
+//   #/skill    → Skill
+//   #/web/...  などのカテゴリ詳細ページ
 const parseRoute = () => window.location.hash.replace(/^#/, '') || '/'
 const route = ref(parseRoute())
+
+// 現在のルートに対応する詳細ページ（無ければ undefined）
+const detailPage = computed(() => resolveDetail(route.value))
 
 const onHashChange = () => {
   route.value = parseRoute()
@@ -23,10 +30,11 @@ const copyrightName = computed(() => site.copyright || profile.name)
 
 <template>
   <ScrollProgress />
-  <SiteNav :current="route" />
+  <HamburgerMenu :current="route" />
 
   <main>
-    <SkillView v-if="route === '/skill'" />
+    <component :is="detailPage" v-if="detailPage" :key="route" />
+    <SkillView v-else-if="route === '/skill'" />
     <HomeView v-else />
 
     <footer class="footer">© {{ year }} {{ copyrightName }}</footer>

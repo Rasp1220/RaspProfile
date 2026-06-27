@@ -21,6 +21,7 @@ import { site, profile, socials, sections } from '../data/profile.js'
     :subtitle="section.subtitle"
     :items="section.items"
     :variant="section.variant"
+    :base="section.base"
     :cta="site.cardCta"
   />
 </template>
