@@ -48,9 +48,11 @@ export const nav = [
 export const mainVisual = {
   interval: 5000,
   images: [
-    // { src: '/visuals/01.jpg', alt: 'メインビジュアル 1' },
-    // { src: '/visuals/02.jpg', alt: 'メインビジュアル 2' },
-    // { src: '/visuals/03.jpg', alt: 'メインビジュアル 3' },
+    // サンプル画像（横長・縦長・正方形）。実際の画像に差し替えてください。
+    // 縦長・正方形の画像はエリアサイズを保ったまま左右に余白を付けて全体表示します。
+    { src: '/visuals/landscape.svg', alt: '横長サンプル (16:9)' },
+    { src: '/visuals/portrait.svg', alt: '縦長サンプル (9:16)' },
+    { src: '/visuals/square.svg', alt: '正方形サンプル (1:1)' },
   ],
 }
 
