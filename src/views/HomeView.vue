@@ -27,5 +27,6 @@ import { site, profile, socials, sections, mainVisual } from '../data/profile.js
     :variant="section.variant"
     :base="section.base"
     :cta="site.cardCta"
+    :compact="section.compact || false"
   />
 </template>

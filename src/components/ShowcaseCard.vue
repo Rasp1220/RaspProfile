@@ -11,6 +11,8 @@ const props = defineProps({
   base: { type: String, default: '' },
   // 「開く」ボタンの文言
   cta: { type: String, default: 'ひらく' },
+  // コンパクト表示（アイコン＋名前のみ）
+  compact: { type: Boolean, default: false },
 })
 
 // base と slug があれば詳細ページ（内部リンク）へ、無ければ外部URLへ。
@@ -24,7 +26,26 @@ const isInternal = computed(() => !!detailHref.value)
 </script>
 
 <template>
+  <!-- コンパクト表示（アイコン＋名前のみ） -->
   <a
+    v-if="compact"
+    class="scard scard--compact"
+    :href="href"
+    :target="isInternal ? undefined : '_blank'"
+    :rel="isInternal ? undefined : 'noopener noreferrer'"
+    :style="{ '--accent': item.accent || 'var(--accent)' }"
+    v-reveal="{ variant, delay: index * 80 }"
+  >
+    <div class="scard__icon">
+      <img v-if="item.image" :src="item.image" :alt="item.name" class="scard__icon-img" />
+      <span v-else class="scard__icon-emoji">{{ item.emoji || '🔗' }}</span>
+    </div>
+    <span class="scard__compact-name">{{ item.name }}</span>
+  </a>
+
+  <!-- 通常表示 -->
+  <a
+    v-else
     class="scard"
     :href="href"
     :target="isInternal ? undefined : '_blank'"
@@ -182,5 +203,65 @@ const isInternal = computed(() => !!detailHref.value)
 .scard:hover .scard__cta svg {
   transform: translate(2px, -2px);
   transition: transform 0.2s ease;
+}
+
+/* ---- コンパクトモード ---- */
+.scard--compact {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  gap: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  min-width: 7rem;
+  max-width: 9rem;
+}
+
+.scard--compact:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+
+.scard__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(
+      120% 120% at 0% 0%,
+      color-mix(in srgb, var(--accent) 50%, transparent),
+      transparent 60%
+    ),
+    color-mix(in srgb, var(--accent) 20%, var(--bg-soft));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.scard__icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.scard__icon-emoji {
+  font-size: 1.6rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.scard--compact:hover .scard__icon-emoji {
+  transform: scale(1.15) rotate(-8deg);
+}
+
+.scard__compact-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  word-break: break-word;
 }
 </style>

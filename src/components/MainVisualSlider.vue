@@ -54,6 +54,7 @@ onBeforeUnmount(stop)
     class="mv"
     aria-roledescription="carousel"
     aria-label="Main visual"
+    v-reveal="{ variant: 'rise' }"
     @mouseenter="stop"
     @mouseleave="start"
   >
@@ -126,9 +127,9 @@ onBeforeUnmount(stop)
 .mv__img {
   display: block;
   width: 100%;
-  /* 16:9 を基準に、画面幅に応じて高さを調整 */
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
+  background: var(--bg-soft);
 }
 
 /* ---- 前後ボタン ---- */

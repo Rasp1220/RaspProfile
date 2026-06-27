@@ -180,6 +180,7 @@ export const sections = [
     title: 'Discord Bot',
     subtitle: '開発・運用しているDiscord Botの紹介です。',
     variant: 'mask-up',
+    compact: true,
     items: discordBots,
   },
   {
