@@ -10,6 +10,8 @@ defineProps({
   items: { type: Array, default: () => [] },
   // カードの登場アニメ（reveal.css の variant）
   variant: { type: String, default: 'rise' },
+  // 詳細ページURLの接頭辞（指定するとカードは詳細ページへ遷移）
+  base: { type: String, default: '' },
   // カードの「開く」ボタンの文言
   cta: { type: String, default: 'ひらく' },
   // 項目が無いときの表示
@@ -34,6 +36,7 @@ defineProps({
         :item="item"
         :variant="variant"
         :index="i"
+        :base="base"
         :cta="cta"
       />
     </div>
@@ -55,7 +58,7 @@ defineProps({
 }
 
 .eyebrow {
-  display: inline-block;
+  display: block;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.25em;

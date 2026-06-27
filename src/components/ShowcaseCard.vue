@@ -1,21 +1,34 @@
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
   item: { type: Object, required: true },
   // 登場アニメの種類（reveal.css の variant）
   variant: { type: String, default: 'rise' },
   // グリッド内での順番。stagger（時間差）に使用
   index: { type: Number, default: 0 },
+  // 詳細ページURLの接頭辞（item.slug と合わせて遷移先を作る）
+  base: { type: String, default: '' },
   // 「開く」ボタンの文言
   cta: { type: String, default: 'ひらく' },
 })
+
+// base と slug があれば詳細ページ（内部リンク）へ、無ければ外部URLへ。
+const detailHref = computed(() =>
+  props.base && props.item.slug
+    ? '#' + props.base + '/' + props.item.slug
+    : '',
+)
+const href = computed(() => detailHref.value || props.item.url)
+const isInternal = computed(() => !!detailHref.value)
 </script>
 
 <template>
   <a
     class="scard"
-    :href="item.url"
-    target="_blank"
-    rel="noopener noreferrer"
+    :href="href"
+    :target="isInternal ? undefined : '_blank'"
+    :rel="isInternal ? undefined : 'noopener noreferrer'"
     :style="{ '--accent': item.accent || 'var(--accent)' }"
     v-reveal="{ variant, delay: index * 110 }"
   >

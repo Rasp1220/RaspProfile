@@ -15,24 +15,23 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
 
 <template>
   <section class="skill-page" :style="accentVars">
-    <!-- ヒーローと同じスタイルの見出し -->
+    <!-- 見出し（シンプルに：小ラベル＋タイトル＋一言だけ） -->
     <header class="skill-hero">
       <span v-if="skillPage.eyebrow" class="eyebrow">{{ skillPage.eyebrow }}</span>
       <RevealTitle :text="skillPage.name" tag="h1" class="skill-name" />
-      <span v-if="skillPage.badge" class="title-badge">{{ skillPage.badge }}</span>
       <p v-if="skillPage.tagline" class="tagline">{{ skillPage.tagline }}</p>
     </header>
 
-    <!-- スキル一覧（カテゴリごとのカードを中央寄せで横並び） -->
-    <div class="skill-grid">
+    <!-- スキル一覧（横長カードを縦に積む） -->
+    <div class="skill-list">
       <article
         v-for="(group, i) in skills"
         :key="group.category"
-        class="skill-card"
-        v-reveal="{ variant: 'rise', delay: i * 110 }"
+        class="skill-row"
+        v-reveal="{ variant: 'rise', delay: i * 90 }"
       >
-        <h2 class="skill-card__title">
-          <span v-if="group.emoji" class="skill-card__emoji">{{ group.emoji }}</span>
+        <h2 class="skill-row__title">
+          <span v-if="group.emoji" class="skill-row__emoji">{{ group.emoji }}</span>
           {{ group.category }}
         </h2>
         <ul class="chips">
@@ -58,14 +57,14 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
   padding: clamp(5rem, 14vh, 9rem) 1.25rem clamp(4rem, 12vh, 8rem);
 }
 
-/* ---- ヒーローと同じ見出しスタイル ---- */
+/* ---- 見出し（シンプル版） ---- */
 .skill-hero {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .eyebrow {
-  display: inline-block;
+  display: block;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.25em;
@@ -80,40 +79,29 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.05;
-}
-
-.title-badge {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-  background: var(--accent-grad);
-  box-shadow: 0 8px 24px -8px var(--glow);
+  justify-content: center;
 }
 
 .tagline {
-  margin: 1.25rem auto 0;
+  margin: 1rem auto 0;
   max-width: 32rem;
   color: var(--text-muted);
   line-height: 1.7;
 }
 
-/* ---- スキルカード（1つでも複数でも中央寄せ） ---- */
-.skill-grid {
+/* ---- スキル：横長カードを縦に並べる ---- */
+.skill-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.25rem;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.skill-card {
-  flex: 0 1 19rem;
-  max-width: 100%;
-  min-width: 0;
-  padding: 1.5rem;
+.skill-row {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 1.5rem;
   border-radius: var(--radius);
   background: var(--card);
   border: 1px solid var(--card-border);
@@ -124,23 +112,23 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
     box-shadow 0.22s ease;
 }
 
-.skill-card:hover {
-  transform: translateY(-6px);
+.skill-row:hover {
+  transform: translateY(-3px);
   border-color: color-mix(in srgb, var(--accent) 55%, transparent);
   box-shadow: 0 26px 50px -26px color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
-.skill-card__title {
+.skill-row__title {
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  margin: 0 0 1.1rem;
-  font-size: 1.15rem;
+  margin: 0;
+  font-size: 1.1rem;
   font-weight: 700;
 }
 
-.skill-card__emoji {
-  font-size: 1.4rem;
+.skill-row__emoji {
+  font-size: 1.35rem;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
 }
 
@@ -151,6 +139,14 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+/* 狭い画面では見出しを上、チップを下に縦積み */
+@media (max-width: 560px) {
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
 }
 
 .chip {

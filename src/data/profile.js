@@ -28,7 +28,7 @@ export const site = {
 // -------------------------------------------------------------
 export const nav = [
   { label: 'Home', to: '/' },
-  { label: 'Skill', to: '/skill' },
+  { label: 'SKILL', to: '/skill' },
 ]
 
 // -------------------------------------------------------------
@@ -72,9 +72,12 @@ export const socials = [
 // -------------------------------------------------------------
 
 // 運用しているWebサイト
+//   slug … 詳細ページのURL（#/web/<slug>）に使う識別子。
+//          詳細ページのファイル（src/views/details/Web/）と対応させます。
 const websites = [
   {
     name: 'My Website',
+    slug: 'my-website',
     url: 'https://example.com',
     description: '運用しているWebサイトの説明をここに書きます。',
     emoji: '🌐',
@@ -84,6 +87,7 @@ const websites = [
   },
   {
     name: 'Another Site',
+    slug: 'another-site',
     url: 'https://example.com',
     description: 'もう一つのサイトの紹介文。',
     emoji: '✨',
@@ -96,6 +100,7 @@ const websites = [
 const discordBots = [
   {
     name: 'My Discord Bot',
+    slug: 'my-discord-bot',
     url: 'https://discord.com/',
     description: 'Botでできることを説明します。',
     emoji: '🤖',
@@ -110,6 +115,7 @@ const discordBots = [
 const minecraftPlugins = [
   {
     name: 'My Plugin',
+    slug: 'my-plugin',
     url: 'https://www.spigotmc.org/',
     description: 'プラグインの機能を説明します。',
     emoji: '🧱',
@@ -129,8 +135,14 @@ const minecraftPlugins = [
 //              rise / flip-x / mask-up / zoom-rotate / skew / unblur / wipe
 //   items    : 上で定義したカード配列
 // -------------------------------------------------------------
+//   key      : カテゴリ識別子（内部用）
+//   base     : 詳細ページのURL接頭辞（カードは base + '/' + item.slug へ遷移）
+//   menuLabel: ハンバーガーメニューに出すカテゴリ名
 export const sections = [
   {
+    key: 'web',
+    base: '/web',
+    menuLabel: 'Web',
     eyebrow: 'Websites',
     title: '運用しているWebサイト',
     subtitle: '制作・運用しているサイトの紹介です。',
@@ -138,6 +150,9 @@ export const sections = [
     items: websites,
   },
   {
+    key: 'discord',
+    base: '/discord',
+    menuLabel: 'Discord Bot',
     eyebrow: 'Discord Bots',
     title: 'Discord Bot',
     subtitle: '開発・運用しているDiscord Botの紹介です。',
@@ -145,6 +160,9 @@ export const sections = [
     items: discordBots,
   },
   {
+    key: 'minecraft',
+    base: '/minecraft',
+    menuLabel: 'Minecraft Plugins',
     eyebrow: 'Minecraft Plugins',
     title: 'Minecraft Plugin',
     subtitle: '作っているMinecraftプラグインの紹介です。',
@@ -152,6 +170,16 @@ export const sections = [
     items: minecraftPlugins,
   },
 ]
+
+// -------------------------------------------------------------
+//  詳細ページ用ヘルパー。カテゴリ key と slug からカード情報を取得します。
+//  各詳細ページ（src/views/details/...）が name / accent / tags などを
+//  ここから引くことで、ホームのカードと内容が一致します。
+// -------------------------------------------------------------
+export const getDetailItem = (key, slug) => {
+  const section = sections.find((s) => s.key === key)
+  return section ? section.items.find((it) => it.slug === slug) : undefined
+}
 
 // =============================================================
 //  SKILL ページ（#/skill）
@@ -166,9 +194,7 @@ export const skillPage = {
   eyebrow: 'Skills',
   // 大きな見出し（profile.name と同じ表示スタイル）
   name: 'Skill Set',
-  // 称号バッジ（"Creator & Developer" と同じスタイル）
-  badge: 'Languages・Frameworks・Infra',
-  // ひとことキャッチ
+  // ひとことキャッチ（見出し周りはシンプルに：バッジは廃止）
   tagline: '普段つかっている技術スタックをまとめています。',
   // このページのテーマ色（プロフィールのキャラメルから少し変える）
   accent: '#6d7fa6', // ダスティブルー
