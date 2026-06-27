@@ -49,7 +49,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
           target="_blank"
           rel="noopener noreferrer"
         >
-          <IconLink :name="s.icon" />
+          <IconLink :name="s.icon" :src="s.image" :alt="s.label" />
         </a>
       </div>
     </div>

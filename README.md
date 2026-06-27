@@ -26,10 +26,25 @@ npm run preview  # ビルド結果をローカルで確認
 | 編集対象            | 内容                                       |
 | ------------------- | ------------------------------------------ |
 | `profile`           | 名前・称号・キャッチ・アバター             |
-| `socials`           | ヘッダーのソーシャルアイコン               |
+| `socials`           | プロフィール上部のソーシャルリンク         |
 | `websites`          | 運用しているWebサイト（**足すだけで増える**） |
 | `discordBots`       | Discord Bot                                |
 | `minecraftPlugins`  | Minecraft Plugin                           |
+
+### アイコン・画像は `public/` から読み込む
+
+画像（アバター・ソーシャルアイコン・カードのスクリーンショット）は
+`public/` ディレクトリに置き、`/` から始まるパスで指定します。
+
+| 指定          | 例                            | 置き場所            |
+| ------------- | ----------------------------- | ------------------- |
+| アバター      | `avatar: '/avatar.png'`       | `public/avatar.png` |
+| ソーシャル    | `image: '/icons/github.svg'`  | `public/icons/`     |
+| カード画像    | `image: '/shots/website.png'` | `public/shots/`     |
+
+ソーシャルアイコンは `image`（`public/` のパス）を指定するとその画像を、
+未指定なら `icon`（`github` / `x` / `discord` …）で組み込みSVGを表示します。
+サンプルとして `public/icons/example.svg` を同梱しています。
 
 ### 項目を後から追加する
 

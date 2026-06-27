@@ -12,18 +12,27 @@ export const profile = {
   title: 'Creator & Developer',
   // ひとことキャッチ
   tagline: 'Webサイト・Discord Bot・Minecraft Plugin をつくっています。',
-  // アバター画像（public/ に置いてパス指定。未設定ならイニシャル表示）
+  // アバター画像。public/ に画像を置いてそのパスを指定します。
+  //   例: public/avatar.png を置いたら avatar: '/avatar.png'
+  // 未設定（空文字）なら名前の頭文字を表示します。
   avatar: '',
 }
 
 // -------------------------------------------------------------
-//  ヘッダーの小さなソーシャルアイコン（任意・空配列で非表示）
-//  icon: github / x / instagram / youtube / discord / mail / link
+//  プロフィール上部のソーシャルリンク（任意・空配列で非表示）
+//  アイコンの指定方法は 2 通り:
+//   1) icon: 組み込みアイコン名を使う
+//      github / x / twitter / instagram / youtube / linkedin /
+//      discord / mail / link
+//   2) image: public/ に置いた画像のパスを使う（icon より優先）
+//      例: public/icons/github.svg を置いたら image: '/icons/github.svg'
 // -------------------------------------------------------------
 export const socials = [
   { label: 'GitHub', url: 'https://github.com/', icon: 'github' },
   { label: 'X', url: 'https://x.com/', icon: 'x' },
   { label: 'Discord', url: 'https://discord.com/', icon: 'discord' },
+  // 画像アイコンを使う例（public/ に置いたパスを指定）:
+  // { label: 'Booth', url: 'https://booth.pm/', image: '/icons/booth.svg' },
 ]
 
 // -------------------------------------------------------------
