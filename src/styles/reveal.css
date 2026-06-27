@@ -1,0 +1,64 @@
+/* =============================================================
+   スクロール表示アニメーション（v-reveal 用）
+   各 variant が「変わった登場の動き」を担当します。
+   ============================================================= */
+
+.reveal {
+  opacity: 0;
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.95s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s ease,
+    clip-path 0.95s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: transform, opacity, filter, clip-path;
+}
+
+/* 表示後はすべて素の状態へ戻す
+   （variant の [data-reveal='...'] より詳細度を高くして確実に上書き） */
+.reveal[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(0 0 0 0);
+}
+
+/* --- 各 variant の「初期状態」 ----------------------------- */
+
+/* 下からふわっと */
+.reveal[data-reveal='rise'] {
+  transform: translateY(48px);
+}
+
+/* 上端を軸に立ち上がるように開く（3D） */
+.reveal[data-reveal='flip-x'] {
+  transform: perspective(1400px) rotateX(-82deg) translateY(40px);
+  transform-origin: top center;
+}
+
+/* 下から布をめくるように出現（マスク） */
+.reveal[data-reveal='mask-up'] {
+  clip-path: inset(100% 0 0 0);
+  transform: translateY(36px);
+}
+
+/* 小さく回転しながら拡大して着地 */
+.reveal[data-reveal='zoom-rotate'] {
+  transform: scale(0.55) rotate(-12deg);
+}
+
+/* 横から歪みながらスライド */
+.reveal[data-reveal='skew'] {
+  transform: translateX(-72px) skewY(7deg);
+}
+
+/* ピントが合うように（ブラー→クリア） */
+.reveal[data-reveal='unblur'] {
+  filter: blur(18px);
+  transform: scale(1.06);
+}
+
+/* 左から右へワイプ */
+.reveal[data-reveal='wipe'] {
+  clip-path: inset(0 100% 0 0);
+}

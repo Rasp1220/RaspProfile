@@ -1,101 +1,61 @@
 <script setup>
-import ProfileHeader from './components/ProfileHeader.vue'
-import LinkCard from './components/LinkCard.vue'
-import { profile, links, skills } from './data/profile.js'
+import ScrollProgress from './components/ScrollProgress.vue'
+import HeroSection from './components/HeroSection.vue'
+import ShowcaseSection from './components/ShowcaseSection.vue'
+import {
+  profile,
+  socials,
+  websites,
+  discordBots,
+  minecraftPlugins,
+} from './data/profile.js'
 
 const year = new Date().getFullYear()
 </script>
 
 <template>
-  <main class="page">
-    <div class="card-shell">
-      <ProfileHeader :profile="profile" />
+  <ScrollProgress />
 
-      <!-- スキル / タグ（profile.js の skills を編集） -->
-      <section v-if="skills.length" class="skills">
-        <span v-for="skill in skills" :key="skill" class="chip">{{
-          skill
-        }}</span>
-      </section>
+  <main>
+    <!-- 1. プロフィール（画像・名前・称号） -->
+    <HeroSection :profile="profile" :socials="socials" />
 
-      <!-- リンク一覧（profile.js の links を編集すると増減） -->
-      <section v-if="links.length" class="links">
-        <LinkCard v-for="link in links" :key="link.url" :link="link" />
-      </section>
+    <!-- 2. 運用しているWebサイト -->
+    <ShowcaseSection
+      eyebrow="Websites"
+      title="運用しているWebサイト"
+      subtitle="制作・運用しているサイトの紹介です。"
+      :items="websites"
+      variant="flip-x"
+    />
 
-      <!-- リンクがまだ無い場合のプレースホルダー -->
-      <p v-else class="empty">リンクは準備中です。</p>
-    </div>
+    <!-- 3. Discord Bot -->
+    <ShowcaseSection
+      eyebrow="Discord Bots"
+      title="Discord Bot"
+      subtitle="開発・運用しているDiscord Botの紹介です。"
+      :items="discordBots"
+      variant="mask-up"
+    />
+
+    <!-- 4. Minecraft Plugin -->
+    <ShowcaseSection
+      eyebrow="Minecraft Plugins"
+      title="Minecraft Plugin"
+      subtitle="作っているMinecraftプラグインの紹介です。"
+      :items="minecraftPlugins"
+      variant="zoom-rotate"
+    />
 
     <footer class="footer">© {{ year }} {{ profile.name }}</footer>
   </main>
 </template>
 
 <style scoped>
-.page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem 1.25rem;
-}
-
-.card-shell {
-  width: 100%;
-  max-width: 40rem;
-  padding: clamp(1.75rem, 5vw, 3rem);
-  background: var(--card);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
-  animation: rise 0.6s ease both;
-}
-
-.skills {
-  margin-top: 1.75rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.chip {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--card-border);
-}
-
-.links {
-  margin-top: 1.75rem;
-  display: grid;
-  gap: 0.75rem;
-}
-
-.empty {
-  margin-top: 1.75rem;
-  text-align: center;
-  color: var(--text-muted);
-}
-
 .footer {
-  margin-top: 2rem;
+  text-align: center;
+  padding: 3rem 1.25rem 4rem;
   font-size: 0.8rem;
   color: var(--text-muted);
-}
-
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 </style>

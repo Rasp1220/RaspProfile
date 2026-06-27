@@ -1,7 +1,14 @@
 # RaspProfile
 
-Vue + Vite で作った、静的なプロフィールサイトのベースです。
-ダークでモダンな見た目になっています。
+Vue 3 + Vite で作った、静的なプロフィール／ポートフォリオサイトです。
+下にスクロールすると、各セクションが少し変わった動きで次々に現れます。
+
+## 構成
+
+1. **ヒーロー** — プロフィール画像・名前・称号
+2. **運用しているWebサイト**
+3. **Discord Bot**
+4. **Minecraft Plugin**
 
 ## セットアップ
 
@@ -14,45 +21,64 @@ npm run preview  # ビルド結果をローカルで確認
 
 ## カスタマイズ
 
-表示する内容は **`src/data/profile.js` を編集するだけ** で変更できます。
-コードに触れる必要はありません。
+表示内容は **`src/data/profile.js` を編集するだけ** で変更できます。
 
-| 編集対象     | 内容                                       |
-| ------------ | ------------------------------------------ |
-| `profile`    | 名前・肩書き・自己紹介・アバター・所在地    |
-| `links`      | 他サイトへのリンク（**ここに足すだけで増える**） |
-| `skills`     | スキル / 興味タグ（`[]` にすると非表示）    |
+| 編集対象            | 内容                                       |
+| ------------------- | ------------------------------------------ |
+| `profile`           | 名前・称号・キャッチ・アバター             |
+| `socials`           | ヘッダーのソーシャルアイコン               |
+| `websites`          | 運用しているWebサイト（**足すだけで増える**） |
+| `discordBots`       | Discord Bot                                |
+| `minecraftPlugins`  | Minecraft Plugin                           |
 
-### リンクを後から追加する
+### 項目を後から追加する
 
-`src/data/profile.js` の `links` 配列に項目を追加します。
+各配列に項目を追加するだけでカードが増えます。画像が無くても
+`emoji` と `accent`（テーマ色）でカードが成立します。
 
 ```js
 {
-  label: 'YouTube',
-  url: 'https://youtube.com/@you',
-  icon: 'youtube',          // github / x / instagram / youtube / linkedin / mail / link
-  description: '動画コンテンツ',
+  name: 'My Site',
+  url: 'https://example.com',
+  description: '説明文',
+  emoji: '🌐',
+  accent: '#38bdf8',     // カードのテーマ色
+  tags: ['Web', 'Vue'],
+  stat: '10k users',      // 任意。右上に表示
+  // image: '/shots/site.png', // public/ に置いた画像を表示
 }
 ```
 
-対応アイコンを増やしたい場合は `src/components/IconLink.vue` の
-`icons` に SVG パスを 1 行追加してください。未対応のキーは
-汎用のリンクアイコンで表示されます。
+## 登場アニメーション
 
-### アバター画像
+スクロールで要素を表示する仕組みは `v-reveal` ディレクティブ
+（`src/directives/reveal.js`）です。`variant` を変えると動きが変わります。
+
+| variant       | 動き                          |
+| ------------- | ----------------------------- |
+| `rise`        | 下からふわっと                |
+| `flip-x`      | 上端を軸に立ち上がる（3D）    |
+| `mask-up`     | 下からめくれて出現            |
+| `zoom-rotate` | 回転しながら拡大して着地      |
+| `skew`        | 歪みながら横スライド          |
+| `unblur`      | ピントが合う（ブラー→クリア） |
+| `wipe`        | 左から右へワイプ              |
+
+セクションごとに `App.vue` で `variant` を割り当てています。
+見出しは1文字ずつ立ち上がる `RevealTitle.vue` を使用。
+モーション軽減設定（prefers-reduced-motion）の環境では自動で無効化されます。
+
+## アバター画像
 
 `public/` に画像を置き、`profile.avatar` にパス（例: `/avatar.jpg`）を
 指定します。未設定の場合は名前の頭文字が表示されます。
 
-### 色テーマ
+## 色テーマ
 
-`src/styles/main.css` の `:root` にあるカラー変数を変更すると、
-サイト全体の色味が変わります。
+`src/styles/main.css` の `:root` のカラー変数を変更すると全体の色味が変わります。
 
 ## デプロイ
 
-`npm run build` で生成される `dist/` を任意の静的ホスティング
-（GitHub Pages / Netlify / Vercel など）に配置するだけです。
+`npm run build` で生成される `dist/` を任意の静的ホスティングに配置するだけです。
 GitHub Pages のサブパスに置く場合は `vite.config.js` の `base` を
 リポジトリ名（例: `'/RaspProfile/'`）に変更してください。
