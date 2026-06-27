@@ -5,6 +5,8 @@ defineProps({
   variant: { type: String, default: 'rise' },
   // グリッド内での順番。stagger（時間差）に使用
   index: { type: Number, default: 0 },
+  // 「開く」ボタンの文言
+  cta: { type: String, default: 'ひらく' },
 })
 </script>
 
@@ -35,7 +37,7 @@ defineProps({
       </div>
 
       <span class="scard__cta">
-        ひらく
+        {{ cta }}
         <svg
           viewBox="0 0 24 24"
           width="16"

@@ -1,8 +1,16 @@
 <script setup>
-// アイコンキーに対応する SVG パスを返すコンポーネント。
-// 新しいサービスを追加したい場合は icons オブジェクトに 1 行足すだけ。
-defineProps({
+// アイコンを表示するコンポーネント。
+//  - src を渡すと public/ に置いた画像（パス指定）をそのまま表示します。
+//    例: <IconLink src="/icons/github.svg" />
+//  - src が無いときは name に対応する組み込み SVG を表示します。
+//    新しい組み込みアイコンを足したい場合は icons に 1 行追加するだけ。
+const props = defineProps({
   name: { type: String, default: 'link' },
+  // public/ に置いた画像へのパス（例: '/icons/github.svg'）。
+  // 指定するとこちらが優先されます。
+  src: { type: String, default: '' },
+  // 画像表示時の代替テキスト
+  alt: { type: String, default: '' },
 })
 
 const icons = {
@@ -27,7 +35,19 @@ const get = (name) => icons[name] || icons.link
 </script>
 
 <template>
+  <!-- public/ に置いた画像をパスから表示 -->
+  <img
+    v-if="src"
+    class="icon-img"
+    :src="src"
+    :alt="alt"
+    width="22"
+    height="22"
+    loading="lazy"
+  />
+  <!-- 組み込み SVG アイコン -->
   <svg
+    v-else
     viewBox="0 0 24 24"
     width="22"
     height="22"
@@ -37,3 +57,12 @@ const get = (name) => icons[name] || icons.link
     <path :d="get(name)" />
   </svg>
 </template>
+
+<style scoped>
+.icon-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+</style>
