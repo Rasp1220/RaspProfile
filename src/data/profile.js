@@ -32,6 +32,26 @@ export const nav = [
 ]
 
 // -------------------------------------------------------------
+//  メインビジュアルのスライダー（ヒーローの下・Scroll マークの先）
+//  カルーセル形式で複数の画像を順に表示します。
+//   images   : 表示する画像。public/ に置いた画像のパスを指定します。
+//              あとから何枚でも登録／削除できます（空配列なら非表示）。
+//                例: public/visuals/01.jpg を置いたら '/visuals/01.jpg'
+//              文字列だけでも { src, alt } でも指定できます。
+//                '/visuals/01.jpg'
+//                { src: '/visuals/01.jpg', alt: '説明テキスト' }
+//   interval : 自動でスライドが切り替わる間隔(ミリ秒)。0 で自動再生オフ
+// -------------------------------------------------------------
+export const mainVisual = {
+  interval: 5000,
+  images: [
+    // { src: '/visuals/01.jpg', alt: 'メインビジュアル 1' },
+    // { src: '/visuals/02.jpg', alt: 'メインビジュアル 2' },
+    // { src: '/visuals/03.jpg', alt: 'メインビジュアル 3' },
+  ],
+}
+
+// -------------------------------------------------------------
 //  プロフィール（ヒーロー部分）
 // -------------------------------------------------------------
 export const profile = {
@@ -237,5 +257,16 @@ export const skills = [
     category: 'Infrastructure',
     emoji: '🛠️',
     items: ['Docker', 'AWS', 'Cloudflare', 'GitHub Actions', 'Linux'],
+  },
+  {
+    category: 'AI',
+    emoji: '🤖',
+    items: [
+      { name: 'OpenAI API', note: 'メイン' },
+      'Claude API',
+      'LangChain',
+      'Stable Diffusion',
+      'Prompt Engineering',
+    ],
   },
 ]
