@@ -8,6 +8,8 @@
 //  サイト全体の設定（ブラウザのタブ・言語・フッターなど）
 // -------------------------------------------------------------
 export const site = {
+  // ページ上部ヘッダー左に表示するブランド名（サイト名）
+  brand: 'Rasp Profile',
   // ブラウザのタブ／検索結果に出るタイトル
   title: 'Your Name — Profile',
   // 検索エンジンなどに渡す説明文
@@ -29,6 +31,7 @@ export const site = {
 export const nav = [
   { label: 'Home', to: '/' },
   { label: 'SKILL', to: '/skill' },
+  { label: 'GEAR', to: '/gear' },
 ]
 
 // -------------------------------------------------------------
@@ -268,5 +271,85 @@ export const skills = [
       'Stable Diffusion',
       'Prompt Engineering',
     ],
+  },
+]
+
+// =============================================================
+//  GEAR ページ（#/gear）使用機材・ツール紹介
+//  SKILL ページと同じスタイル（横長カードを縦に積む）で表示します。
+// =============================================================
+
+// -------------------------------------------------------------
+//  GEAR ページのヘッダー（ヒーローと同じスタイルを適用）
+//  accent / accent2 でこのページだけ色味を変えられます。
+// -------------------------------------------------------------
+export const gearPage = {
+  // 上の小ラベル
+  eyebrow: 'Gear',
+  // 大きな見出し（profile.name と同じ表示スタイル）
+  name: 'Gear & Tools',
+  // ひとことキャッチ
+  tagline: '普段つかっている機材・ツールをまとめています。',
+  // このページのテーマ色
+  accent: '#8a6db0', // ダスティパープル
+  accent2: '#b59ad0', // ライトラベンダー
+}
+
+// -------------------------------------------------------------
+//  機材・ツール一覧（カテゴリごとに複数定義できます）
+//   category : 見出し（マウス / キーボード / ヘッドセット など）
+//   emoji    : 見出し横のアイコン
+//   items    : 機材名の配列
+//              文字列だけ、もしくは { name, note } で補足を付けられます。
+//                'Logicool MX'                       … 名前だけ
+//                { name: 'VS Code', note: 'メイン' } … 補足つき
+// -------------------------------------------------------------
+export const gear = [
+  {
+    category: 'マウス',
+    emoji: '🖱️',
+    items: [
+      { name: 'Logicool MX Master 3S', note: 'メイン' },
+      'Razer DeathAdder',
+      'ロジクール G PRO',
+    ],
+  },
+  {
+    category: 'キーボード',
+    emoji: '⌨️',
+    items: [
+      { name: 'HHKB Professional', note: 'メイン' },
+      'Keychron K2',
+      'REALFORCE',
+    ],
+  },
+  {
+    category: 'ヘッドセット',
+    emoji: '🎧',
+    items: [
+      { name: 'SHURE SE215', note: 'メイン' },
+      'SONY WH-1000XM5',
+      'HyperX Cloud II',
+    ],
+  },
+  {
+    category: 'エディタ',
+    emoji: '📝',
+    items: [
+      { name: 'VS Code', note: 'メイン' },
+      'Neovim',
+      'IntelliJ IDEA',
+      'Cursor',
+    ],
+  },
+  {
+    category: 'モニター',
+    emoji: '🖥️',
+    items: ['Dell U2723QE', 'LG UltraGear', 'BenQ EW2780'],
+  },
+  {
+    category: 'その他',
+    emoji: '🪑',
+    items: ['Herman Aeron', 'Stream Deck', 'Yeti マイク'],
   },
 ]
