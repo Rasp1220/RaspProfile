@@ -21,13 +21,22 @@ function getObserver() {
     observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
+          // clip-path を使う variant（wipe / mask-up）は要素の描画領域が
+          // ゼロになり intersectionRect が 0 → ratio が 0.18 を超えられず
+          // 発火しなくなる。その場合は isIntersecting だけで判定する。
+          const clipped =
+            entry.intersectionRect.width === 0 ||
+            entry.intersectionRect.height === 0
+          if (
+            entry.isIntersecting &&
+            (entry.intersectionRatio >= 0.18 || clipped)
+          ) {
             entry.target.classList.add(VISIBLE)
             observer.unobserve(entry.target)
           }
         }
       },
-      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' },
+      { threshold: [0, 0.18], rootMargin: '0px 0px -8% 0px' },
     )
   }
   return observer

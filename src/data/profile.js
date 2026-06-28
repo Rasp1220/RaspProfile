@@ -48,9 +48,11 @@ export const nav = [
 export const mainVisual = {
   interval: 5000,
   images: [
-    // { src: '/visuals/01.jpg', alt: 'メインビジュアル 1' },
-    // { src: '/visuals/02.jpg', alt: 'メインビジュアル 2' },
-    // { src: '/visuals/03.jpg', alt: 'メインビジュアル 3' },
+    // サンプル画像（横長・縦長・正方形）。実際の画像に差し替えてください。
+    // 縦長・正方形の画像はエリアサイズを保ったまま左右に余白を付けて全体表示します。
+    { src: '/visuals/landscape.svg', alt: '横長サンプル (16:9)' },
+    { src: '/visuals/portrait.svg', alt: '縦長サンプル (9:16)' },
+    { src: '/visuals/square.svg', alt: '正方形サンプル (1:1)' },
   ],
 }
 
@@ -127,7 +129,10 @@ const discordBots = [
     url: 'https://discord.com/',
     description: 'Botでできることを説明します。',
     emoji: '🤖',
-    accent: '#6f7f9c', // くすんだダスティブルー
+    // Bot のアバター画像。公開 URL か public/ に置いたパスを指定します。
+    // 自分のBotの画像に差し替えてください。
+    image: '/icons/bot-default.svg',
+    accent: '#5865F2', // Discord ブルー
     tags: ['Moderation', 'Music'],
     // 任意の数値（サーバー数など）。空にすると非表示
     stat: '1,200 servers',
@@ -180,6 +185,7 @@ export const sections = [
     title: 'Discord Bot',
     subtitle: '開発・運用しているDiscord Botの紹介です。',
     variant: 'mask-up',
+    compact: true,
     items: discordBots,
   },
   {

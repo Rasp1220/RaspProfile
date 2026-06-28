@@ -16,6 +16,8 @@ defineProps({
   cta: { type: String, default: 'ひらく' },
   // 項目が無いときの表示
   emptyText: { type: String, default: '準備中です。' },
+  // コンパクト表示（アイコン＋名前のみ）
+  compact: { type: Boolean, default: false },
 })
 </script>
 
@@ -29,7 +31,7 @@ defineProps({
       <p v-if="subtitle" class="section__sub" v-reveal>{{ subtitle }}</p>
     </div>
 
-    <div v-if="items.length" class="grid">
+    <div v-if="items.length" :class="['grid', compact && 'grid--compact']">
       <ShowcaseCard
         v-for="(item, i) in items"
         :key="item.url + i"
@@ -38,6 +40,7 @@ defineProps({
         :index="i"
         :base="base"
         :cta="cta"
+        :compact="compact"
       />
     </div>
 
@@ -94,6 +97,15 @@ defineProps({
   flex: 0 1 19rem;
   max-width: 100%;
   min-width: 0;
+}
+
+/* コンパクトグリッド（Discord Bot など） */
+.grid--compact {
+  gap: 0.85rem;
+}
+
+.grid--compact > * {
+  flex: 0 1 auto;
 }
 
 .empty {
