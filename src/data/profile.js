@@ -51,8 +51,8 @@ export const mainVisual = {
     // サンプル画像（横長・縦長・正方形）。実際の画像に差し替えてください。
     // 縦長・正方形の画像はエリアサイズを保ったまま左右に余白を付けて全体表示します。
     { src: '/visuals/landscape.svg', alt: '横長サンプル (16:9)' },
-    { src: '/visuals/portrait.svg', alt: '縦長サンプル (9:16)' },
-    { src: '/visuals/square.svg', alt: '正方形サンプル (1:1)' },
+    { src: '/visuals/portrait.png', alt: '縦長サンプル (9:16)' },
+    { src: '/visuals/square.png', alt: '正方形サンプル (1:1)' },
   ],
 }
 
@@ -60,7 +60,7 @@ export const mainVisual = {
 //  プロフィール（ヒーロー部分）
 // -------------------------------------------------------------
 export const profile = {
-  name: 'Your Name',
+  name: 'Rasp／らすぷ',
   // 称号 / 肩書き（名前の下のバッジ）
   title: 'Creator & Developer',
   // ひとことキャッチ
@@ -68,7 +68,7 @@ export const profile = {
   // アバター画像。public/ に画像を置いてそのパスを指定します。
   //   例: public/avatar.png を置いたら avatar: '/avatar.png'
   // 未設定（空文字）なら名前の頭文字を表示します。
-  avatar: '',
+  avatar: 'avatar.png',
 }
 
 // -------------------------------------------------------------
@@ -101,23 +101,22 @@ export const socials = [
 //          詳細ページのファイル（src/views/details/Web/）と対応させます。
 const websites = [
   {
-    name: 'My Website',
+    name: 'ひまつど公式',
     slug: 'my-website',
-    url: 'https://example.com',
-    description: '運用しているWebサイトの説明をここに書きます。',
-    emoji: '🌐',
+    url: 'https://himatsudo.com',
+    description: 'ひまつどサーバーの公式サイトです。サーバーの紹介やイベント情報を掲載しています。',
     accent: '#c98a5e', // キャラメル
-    tags: ['Web', 'Vue'],
-    // image: '/shots/website.png', // public/ に置いた画像を表示
+    tags: ['Web', 'blog'],
+    image: '/shots/server-icon.png', // public/ に置いた画像を表示
   },
   {
-    name: 'Another Site',
+    name: 'ひまつど占い',
     slug: 'another-site',
-    url: 'https://example.com',
-    description: 'もう一つのサイトの紹介文。',
+    url: 'https://fortune.himatsudo.com',
+    description: 'ノリで作った占いサイトです。',
     emoji: '✨',
     accent: '#8a9a6b', // セージグリーン
-    tags: ['Blog'],
+    tags: ['fortune'],
   },
 ]
 
@@ -131,7 +130,7 @@ const discordBots = [
     emoji: '🤖',
     // Bot のアバター画像。公開 URL か public/ に置いたパスを指定します。
     // 自分のBotの画像に差し替えてください。
-    image: '/icons/bot-default.svg',
+    image: '/icons/bot-default.png',
     accent: '#5865F2', // Discord ブルー
     tags: ['Moderation', 'Music'],
     // 任意の数値（サーバー数など）。空にすると非表示
@@ -142,14 +141,13 @@ const discordBots = [
 // 作っている Minecraft Plugin
 const minecraftPlugins = [
   {
-    name: 'My Plugin',
+    name: 'coming soon...',
     slug: 'my-plugin',
     url: 'https://www.spigotmc.org/',
-    description: 'プラグインの機能を説明します。',
+    description: 'coming soon...',
     emoji: '🧱',
     accent: '#7d9b6f', // モスグリーン
-    tags: ['Paper', 'Spigot'],
-    stat: '10k downloads',
+    tags: [],
   },
 ]
 

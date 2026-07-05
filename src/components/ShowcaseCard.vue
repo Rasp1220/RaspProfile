@@ -112,7 +112,7 @@ const isInternal = computed(() => !!detailHref.value)
 
 .scard__media {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 9 / 9;
   display: grid;
   place-items: center;
   background:
@@ -223,8 +223,8 @@ const isInternal = computed(() => !!detailHref.value)
 }
 
 .scard__icon {
-  width: 56px;
-  height: 56px;
+  width: 170px;
+  height: 170px;
   border-radius: 50%;
   display: grid;
   place-items: center;
