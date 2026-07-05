@@ -137,7 +137,7 @@ const discordBots = [
     emoji: '🤖',
     // Bot のアバター画像。公開 URL か public/ に置いたパスを指定します。
     // 自分のBotの画像に差し替えてください。
-    image: '/icons/bot-default.png',
+    image: '/icons/bot-default.jpg',
     accent: '#5865F2', // Discord ブルー
     tags: ['Moderation', 'Music'],
     // 任意の数値（サーバー数など）。空にすると非表示
