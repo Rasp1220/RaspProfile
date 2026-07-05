@@ -114,9 +114,16 @@ const websites = [
     slug: 'another-site',
     url: 'https://fortune.himatsudo.com',
     description: 'ノリで作った占いサイトです。',
-    emoji: '✨',
     accent: '#8a9a6b', // セージグリーン
     tags: ['fortune'],
+  },
+  {
+    name: 'Notely',
+    slug: 'another-site',
+    description: 'タスク管理や議事録の作成を行うWebアプリです。',
+    accent: '#6b8d9a', // セージグリーン
+    tags: ['task', 'todo'],
+    image: '/shots/notely-icon.png', // public/ に置いた画像を表示
   },
 ]
 
