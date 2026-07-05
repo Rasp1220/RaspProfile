@@ -243,8 +243,7 @@ const isInternal = computed(() => !!detailHref.value)
 .scard__icon-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
+  object-fit: contain;
 }
 
 .scard__icon-emoji {
