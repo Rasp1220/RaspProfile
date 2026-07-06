@@ -119,7 +119,7 @@ const websites = [
   },
   {
     name: 'Notely',
-    slug: 'another-site',
+    slug: 'notely',
     description: 'タスク管理や議事録の作成を行うWebアプリです。',
     accent: '#6b8d9a', // セージグリーン
     tags: ['task', 'todo'],

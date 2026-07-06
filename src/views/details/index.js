@@ -14,12 +14,14 @@
 // =============================================================
 import WebMyWebsite from './Web/MyWebsite.vue'
 import WebAnotherSite from './Web/AnotherSite.vue'
+import WebNotely from './Web/Notely.vue'
 import DiscordMyDiscordBot from './DiscordBot/MyDiscordBot.vue'
 import MinecraftMyPlugin from './MinecraftPlugins/MyPlugin.vue'
 
 export const detailPages = {
   '/web/my-website': WebMyWebsite,
   '/web/another-site': WebAnotherSite,
+  '/web/notely': WebNotely,
   '/discord/my-discord-bot': DiscordMyDiscordBot,
   '/minecraft/my-plugin': MinecraftMyPlugin,
 }
