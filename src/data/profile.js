@@ -125,6 +125,12 @@ const websites = [
     tags: ['task', 'todo'],
     image: '/shots/notely-icon.png', // public/ に置いた画像を表示
   },
+  {
+    name: 'Calnest',
+    accent: '#c2a37c', // ナチュラルベージュ
+    tags: [],
+    image: '/shots/calnest-icon.jpeg', // public/ に置いた画像を表示
+  },
 ]
 
 // 運用 / 開発している Discord Bot
