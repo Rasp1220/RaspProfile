@@ -2,6 +2,18 @@
 import { computed } from 'vue'
 import RevealTitle from '../components/RevealTitle.vue'
 import { skillPage, skills } from '../data/profile.js'
+import IconSpeechBalloon from '~icons/noto/speech-balloon'
+import IconPuzzlePiece from '~icons/noto/puzzle-piece'
+import IconHammerAndWrench from '~icons/noto/hammer-and-wrench'
+import IconRobot from '~icons/noto/robot'
+
+// OSごとに絵文字の見た目が変わらないよう、Iconify（Noto）のアイコンで統一する
+const icons = {
+  'speech-balloon': IconSpeechBalloon,
+  'puzzle-piece': IconPuzzlePiece,
+  'hammer-and-wrench': IconHammerAndWrench,
+  robot: IconRobot,
+}
 
 // このページだけテーマ色を差し替える（config の accent / accent2 から）
 const accentVars = computed(() => ({
@@ -31,7 +43,7 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
         v-reveal="{ variant: 'rise', delay: i * 90 }"
       >
         <h2 class="skill-row__title">
-          <span v-if="group.emoji" class="skill-row__emoji">{{ group.emoji }}</span>
+          <component :is="icons[group.icon]" v-if="icons[group.icon]" class="skill-row__emoji" />
           {{ group.category }}
         </h2>
         <ul class="chips">
@@ -128,7 +140,8 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
 }
 
 .skill-row__emoji {
-  font-size: 1.35rem;
+  width: 1.35rem;
+  height: 1.35rem;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
 }
 
