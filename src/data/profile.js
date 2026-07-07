@@ -244,7 +244,7 @@ export const skillPage = {
 // -------------------------------------------------------------
 //  スキル一覧（カテゴリごとに複数定義できます）
 //   category : 見出し（Languages / Frameworks / Infra など）
-//   emoji    : 見出し横のアイコン
+//   icon     : 見出し横のアイコン（Iconify の noto アイコン名。一覧は https://icon-sets.iconify.design/noto/ ）
 //   items    : スキル名の配列
 //              文字列だけ、もしくは { name, note } で補足を付けられます。
 //                'TypeScript'                     … 名前だけ
@@ -253,7 +253,7 @@ export const skillPage = {
 export const skills = [
   {
     category: 'Languages',
-    emoji: '💬',
+    icon: 'speech-balloon',
     items: [
       { name: 'TypeScript', note: 'メイン' },
       'JavaScript',
@@ -264,7 +264,7 @@ export const skills = [
   },
   {
     category: 'Frameworks',
-    emoji: '🧩',
+    icon: 'puzzle-piece',
     items: [
       { name: 'Vue', note: 'メイン' },
       'React',
@@ -275,12 +275,12 @@ export const skills = [
   },
   {
     category: 'Infrastructure',
-    emoji: '🛠️',
+    icon: 'hammer-and-wrench',
     items: ['Docker', 'AWS', 'Cloudflare', 'GitHub Actions', 'Linux'],
   },
   {
     category: 'AI',
-    emoji: '🤖',
+    icon: 'robot',
     items: [
       { name: 'OpenAI API', note: 'メイン' },
       'Claude API',
