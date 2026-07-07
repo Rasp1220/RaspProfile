@@ -128,6 +128,7 @@ const normalize = (it) => (typeof it === 'string' ? { name: it } : it)
 }
 
 .skill-row__emoji {
+  font-family: 'Noto Color Emoji', sans-serif;
   font-size: 1.35rem;
   filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25));
 }
