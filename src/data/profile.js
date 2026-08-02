@@ -116,6 +116,7 @@ const websites = [
     description: 'ノリで作った占いサイトです。',
     accent: '#8a9a6b', // セージグリーン
     tags: ['fortune'],
+    image: '/shots/fortune-icon.png', // public/ に置いた画像を表示
   },
   {
     name: 'Notely',
@@ -254,24 +255,12 @@ export const skills = [
   {
     category: 'Languages',
     emoji: '💬',
-    items: [
-      { name: 'TypeScript', note: 'メイン' },
-      'JavaScript',
-      'Python',
-      'Java',
-      'Go',
-    ],
+    items: ['Java', 'PHP', 'JavaScript', 'Python', 'C言語', 'SQL'],
   },
   {
     category: 'Frameworks',
     emoji: '🧩',
-    items: [
-      { name: 'Vue', note: 'メイン' },
-      'React',
-      'Node.js',
-      'discord.js',
-      'Paper / Spigot',
-    ],
+    items: ['BearSunday', 'Vue', 'Node.js', 'discord.py', 'Spring MVC', 'Spigot / Paper'],
   },
   {
     category: 'Infrastructure',
@@ -281,13 +270,7 @@ export const skills = [
   {
     category: 'AI',
     emoji: '🤖',
-    items: [
-      { name: 'OpenAI API', note: 'メイン' },
-      'Claude API',
-      'LangChain',
-      'Stable Diffusion',
-      'Prompt Engineering',
-    ],
+    items: ['Claude', 'Gemini', 'GPT'],
   },
 ]
 
@@ -325,39 +308,22 @@ export const gear = [
   {
     category: 'マウス',
     emoji: '🖱️',
-    items: [
-      { name: 'Logicool MX Master 3S', note: 'メイン' },
-      'Razer DeathAdder',
-      'ロジクール G PRO',
-    ],
+    items: ['Logicool G703'],
   },
   {
     category: 'キーボード',
     emoji: '⌨️',
-    items: [
-      { name: 'HHKB Professional', note: 'メイン' },
-      'Keychron K2',
-      'REALFORCE',
-    ],
+    items: ['Razer Blackwidow ultimate 2018'],
   },
   {
     category: 'ヘッドセット',
     emoji: '🎧',
-    items: [
-      { name: 'SHURE SE215', note: 'メイン' },
-      'SONY WH-1000XM5',
-      'HyperX Cloud II',
-    ],
+    items: ['Razer Blackshark V2'],
   },
   {
     category: 'エディタ',
     emoji: '📝',
-    items: [
-      { name: 'VS Code', note: 'メイン' },
-      'Neovim',
-      'IntelliJ IDEA',
-      'Cursor',
-    ],
+    items: ['Vscode', 'Eclipse', 'Intelli IDEA'],
   },
   {
     category: 'モニター',
