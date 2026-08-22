@@ -131,7 +131,7 @@ const isSlider = computed(() => props.items.length > 1)
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     margin-inline: -1.25rem;
-    padding: 0.15rem 1.5rem 0.75rem;
+    padding: 0.15rem 1.25rem 0.75rem 2rem;
   }
 
   .grid--scroll::-webkit-scrollbar {
