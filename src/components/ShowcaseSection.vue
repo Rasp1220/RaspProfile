@@ -132,6 +132,8 @@ const isSlider = computed(() => props.items.length > 1)
     scrollbar-width: none;
     margin-inline: -1.25rem;
     padding: 0.15rem 1.25rem 0.75rem 2rem;
+    /* padding-left と揃えないと、スナップ時に左の余白が消えてしまう */
+    scroll-padding-left: 2rem;
   }
 
   .grid--scroll::-webkit-scrollbar {
