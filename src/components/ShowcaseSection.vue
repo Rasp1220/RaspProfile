@@ -120,18 +120,18 @@ const isSlider = computed(() => props.items.length > 1)
   color: var(--text-muted);
 }
 
-/* ---- スマホ：横3つ表示のスワイプスライダー ---- */
+/* ---- スマホ：横2つ表示のスワイプスライダー ---- */
 @media (max-width: 640px) {
   .grid--scroll {
     flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 0.6rem;
+    gap: 0.75rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     margin-inline: -1.25rem;
-    padding: 0.15rem 1.25rem 0.75rem;
+    padding: 0.15rem 1.5rem 0.75rem;
   }
 
   .grid--scroll::-webkit-scrollbar {
@@ -140,28 +140,28 @@ const isSlider = computed(() => props.items.length > 1)
 
   .grid--scroll > * {
     scroll-snap-align: start;
-    flex: 0 0 calc((100% - 2 * 0.6rem) / 3);
+    flex: 0 0 calc((100% - 0.75rem) / 2);
     min-width: 0;
     max-width: none;
   }
 
-  /* 通常カード：3つ並ぶ幅に収まるよう文字・余白を詰める（中身はそのまま表示） */
+  /* 通常カード：2つ並ぶ幅に収まるよう文字・余白を詰める（中身はそのまま表示） */
   .grid--scroll:not(.grid--compact) :deep(.scard__body) {
-    padding: 0.6rem;
-    gap: 0.3rem;
+    padding: 0.85rem;
+    gap: 0.4rem;
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__name) {
-    font-size: 0.78rem;
+    font-size: 0.92rem;
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__stat) {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__desc) {
-    font-size: 0.68rem;
-    line-height: 1.4;
+    font-size: 0.78rem;
+    line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -169,16 +169,16 @@ const isSlider = computed(() => props.items.length > 1)
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__tags) {
-    gap: 0.25rem;
+    gap: 0.3rem;
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__tag) {
-    font-size: 0.6rem;
-    padding: 0.15rem 0.4rem;
+    font-size: 0.66rem;
+    padding: 0.18rem 0.5rem;
   }
 
   .grid--scroll:not(.grid--compact) :deep(.scard__cta) {
-    font-size: 0.68rem;
+    font-size: 0.78rem;
   }
 
   /* コンパクトカード（アイコン＋名前）：アイコンサイズをカード幅に合わせる */
