@@ -92,7 +92,7 @@ const isSlider = computed(() => props.items.length > 1)
   line-height: 1.7;
 }
 
-/* 1つでも複数でも常に中央寄せで横並び。多いときは折り返す。 */
+/* 1件だけのときは中央寄せで表示（複数件は grid--scroll がスライダーにする）。 */
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -120,28 +120,46 @@ const isSlider = computed(() => props.items.length > 1)
   color: var(--text-muted);
 }
 
+/* ---- 複数件（2件以上）は PC・スマホ問わず横スワイプのスライダーにする ---- */
+/* 折り返して2段目に落ちるのを防ぎ、常に横1列のカルーセルとして表示する。 */
+.grid--scroll {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.75rem;
+}
+
+.grid--scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.grid--scroll > * {
+  scroll-snap-align: start;
+  /* PC は横3枚分の幅を基準にする */
+  flex: 0 0 calc((100% - 2 * 1.25rem) / 3);
+  min-width: 16rem;
+  max-width: none;
+}
+
+.grid--scroll.grid--compact > * {
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
 /* ---- スマホ：横2つ表示のスワイプスライダー ---- */
 @media (max-width: 640px) {
   .grid--scroll {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
     gap: 0.75rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
     margin-inline: -1.25rem;
     padding: 0.15rem 1.25rem 0.75rem 2rem;
     /* padding-left と揃えないと、スナップ時に左の余白が消えてしまう */
     scroll-padding-left: 2rem;
   }
 
-  .grid--scroll::-webkit-scrollbar {
-    display: none;
-  }
-
   .grid--scroll > * {
-    scroll-snap-align: start;
     flex: 0 0 calc((100% - 0.75rem) / 2);
     min-width: 0;
     max-width: none;
