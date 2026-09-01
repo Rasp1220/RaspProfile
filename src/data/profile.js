@@ -132,6 +132,13 @@ const websites = [
     tags: [],
     image: '/shots/calnest-icon.jpeg', // public/ に置いた画像を表示
   },
+  {
+    name: 'ゆるかけ',
+    url: 'https://yurukake.himatsudo.com',
+    description: '目的に合ったお出かけスポットを検索できるサイトです',
+    accent: '#5e8ba0', // ダスティブルー
+    tags: ['Web'],
+  },
 ]
 
 // 運用 / 開発している Discord Bot
@@ -161,6 +168,18 @@ const minecraftPlugins = [
     description: 'coming soon...',
     emoji: '🧱',
     accent: '#7d9b6f', // モスグリーン
+    tags: [],
+  },
+]
+
+// 作っている FiveM Script
+const fivemScripts = [
+  {
+    name: 'coming soon...',
+    slug: 'my-fivem-script',
+    description: 'coming soon...',
+    emoji: '🚓',
+    accent: '#b06d7d', // ダスティローズ
     tags: [],
   },
 ]
@@ -209,6 +228,16 @@ export const sections = [
     subtitle: '作っているMinecraftプラグインの紹介です。',
     variant: 'zoom-rotate',
     items: minecraftPlugins,
+  },
+  {
+    key: 'fivem',
+    base: '/fivem',
+    menuLabel: 'FiveM Scripts',
+    eyebrow: 'FiveM Scripts',
+    title: 'FiveM Scripts',
+    subtitle: '作っているFiveMスクリプトの紹介です。',
+    variant: 'skew',
+    items: fivemScripts,
   },
 ]
 

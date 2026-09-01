@@ -5,6 +5,7 @@
 //   - Web              → src/views/details/Web/
 //   - DiscordBot       → src/views/details/DiscordBot/
 //   - MinecraftPlugins → src/views/details/MinecraftPlugins/
+//   - FiveM            → src/views/details/FiveM/
 //
 //  詳細ページを増やすときは
 //   1) 該当ディレクトリに <Name>.vue を作る
@@ -17,6 +18,7 @@ import WebAnotherSite from './Web/AnotherSite.vue'
 import WebNotely from './Web/Notely.vue'
 import DiscordMyDiscordBot from './DiscordBot/MyDiscordBot.vue'
 import MinecraftMyPlugin from './MinecraftPlugins/MyPlugin.vue'
+import FiveMMyFiveMScript from './FiveM/MyFiveMScript.vue'
 
 export const detailPages = {
   '/web/my-website': WebMyWebsite,
@@ -24,6 +26,7 @@ export const detailPages = {
   '/web/notely': WebNotely,
   '/discord/my-discord-bot': DiscordMyDiscordBot,
   '/minecraft/my-plugin': MinecraftMyPlugin,
+  '/fivem/my-fivem-script': FiveMMyFiveMScript,
 }
 
 // ルートに対応する詳細ページを返す（無ければ undefined）
