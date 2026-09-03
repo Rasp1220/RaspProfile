@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import LoadingScreen from './components/LoadingScreen.vue'
 import ScrollProgress from './components/ScrollProgress.vue'
 import SiteHeader from './components/SiteHeader.vue'
 import HomeView from './views/HomeView.vue'
@@ -28,9 +29,13 @@ onBeforeUnmount(() => window.removeEventListener('hashchange', onHashChange))
 
 const year = new Date().getFullYear()
 const copyrightName = computed(() => site.copyright || profile.name)
+
+// 初回訪問時のみ起動シーケンス風のローディング演出を表示
+const isLoading = ref(true)
 </script>
 
 <template>
+  <LoadingScreen v-if="isLoading" @finished="isLoading = false" />
   <ScrollProgress />
   <SiteHeader :current="route" />
 
