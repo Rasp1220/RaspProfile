@@ -10,7 +10,7 @@ const text = computed(() => (profile.name || 'Rasp').split(/[／/]/)[0].trim() |
 const command = ref('')
 const showCursor = ref(true)
 const enterPressed = ref(false)
-const shutterOpen = ref(false)
+const zoomOut = ref(false)
 const visible = ref(true)
 
 const timers = []
@@ -30,9 +30,9 @@ function showEnter() {
   enterPressed.value = true
   setTimer(() => {
     showCursor.value = false
-    shutterOpen.value = true
-    // シャッターが開き切るアニメーション後に完全に取り除く
-    setTimer(finish, 650)
+    zoomOut.value = true
+    // ターミナルがズームアウトして消えるアニメーション後に完全に取り除く
+    setTimer(finish, 700)
   }, 400)
 }
 
@@ -48,7 +48,7 @@ onMounted(() => {
     command.value = text.value
     showCursor.value = false
     setTimer(() => {
-      shutterOpen.value = true
+      zoomOut.value = true
       setTimer(finish, 300)
     }, 200)
     return
@@ -64,7 +64,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="visible" class="loader" :class="{ 'loader--open': shutterOpen }" aria-hidden="true">
+  <div v-if="visible" class="loader" :class="{ 'loader--exit': zoomOut }" aria-hidden="true">
     <div class="terminal">
       <span class="prompt">&gt;</span>
       <span class="command">{{ command }}</span>
@@ -83,13 +83,10 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition:
-    transform 0.6s cubic-bezier(0.77, 0, 0.175, 1),
-    opacity 0.6s ease;
+  transition: opacity 0.55s ease 0.15s;
 }
 
-.loader--open {
-  transform: translateY(-100%);
+.loader--exit {
   opacity: 0;
 }
 
@@ -101,6 +98,15 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 10px;
+  transition:
+    transform 0.5s cubic-bezier(0.55, 0, 1, 0.45),
+    opacity 0.5s ease;
+}
+
+/* ターミナルがカメラを引くようにズームアウトして消える */
+.loader--exit .terminal {
+  transform: scale(0.35);
+  opacity: 0;
 }
 
 .prompt {
