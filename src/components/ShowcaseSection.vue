@@ -39,6 +39,9 @@ const onWheel = (e) => {
   e.preventDefault()
 }
 
+// ドラッグと判定する移動量(px)。これ未満は通常のクリックとして扱う。
+const DRAG_THRESHOLD = 6
+
 let dragging = false
 let dragStartX = 0
 let dragStartScroll = 0
@@ -49,33 +52,51 @@ const suppressNextClick = (e) => {
   e.stopPropagation()
 }
 
+// スクローラーの setPointerCapture は使わない。
+// キャプチャ中は click の発火先がキャプチャ要素（スクローラー）へ差し替えられ、
+// 中のカード <a> がクリックを受け取れず詳細ページへ遷移できなくなるため、
+// 追従は window のイベントで行う。
 const onPointerDown = (e) => {
   const el = scrollerRef.value
   if (!el || e.pointerType === 'touch' || el.scrollWidth <= el.clientWidth) return
+  if (e.button !== 0) return
   dragging = true
   dragMoved = false
   dragStartX = e.clientX
   dragStartScroll = el.scrollLeft
-  el.setPointerCapture(e.pointerId)
+  window.addEventListener('pointermove', onPointerMove)
+  window.addEventListener('pointerup', onPointerUp)
+  window.addEventListener('pointercancel', onPointerUp)
 }
 
 const onPointerMove = (e) => {
   if (!dragging) return
   const el = scrollerRef.value
+  if (!el) return
   const dx = e.clientX - dragStartX
-  if (Math.abs(dx) > 3) dragMoved = true
+  if (!dragMoved) {
+    if (Math.abs(dx) <= DRAG_THRESHOLD) return
+    dragMoved = true
+  }
   el.scrollLeft = dragStartScroll - dx
 }
 
 const onPointerUp = () => {
   if (!dragging) return
   dragging = false
+  window.removeEventListener('pointermove', onPointerMove)
+  window.removeEventListener('pointerup', onPointerUp)
+  window.removeEventListener('pointercancel', onPointerUp)
   const el = scrollerRef.value
   // ドラッグでクリックが誤爆してカード遷移しないようにする
   if (dragMoved && el) {
     el.addEventListener('click', suppressNextClick, { capture: true, once: true })
   }
 }
+
+// カード（<a>／<img>）のネイティブなドラッグ＆ドロップが始まると
+// ポインタイベントが途切れて横スクロールが止まるため無効化する。
+const onDragStart = (e) => e.preventDefault()
 
 // ---- 矢印ボタンでのスライド操作 ----
 const canScrollPrev = ref(false)
@@ -105,6 +126,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateNavState)
+  onPointerUp()
 })
 </script>
 
@@ -124,10 +146,7 @@ onBeforeUnmount(() => {
         :class="['grid', compact && 'grid--compact', isSlider && 'grid--scroll']"
         @wheel="onWheel"
         @pointerdown="onPointerDown"
-        @pointermove="onPointerMove"
-        @pointerup="onPointerUp"
-        @pointerleave="onPointerUp"
-        @pointercancel="onPointerUp"
+        @dragstart="onDragStart"
         @scroll="updateNavState"
       >
         <ShowcaseCard
