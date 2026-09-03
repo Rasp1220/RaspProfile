@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import RevealTitle from './RevealTitle.vue'
 import ShowcaseCard from './ShowcaseCard.vue'
 
@@ -24,6 +24,58 @@ const props = defineProps({
 // カードが2件以上あるときだけ、スマホでは横3つ表示＋スワイプの
 // スライダーにする（1件しかない場合は今までどおりの表示のまま）。
 const isSlider = computed(() => props.items.length > 1)
+
+// ---- PC でもスライダーを操作できるようにする ----
+// タッチ端末はネイティブのスワイプで動くが、PC のマウスには
+// 横スクロールする手段が無いため、縦ホイールとドラッグを
+// 横スクロールに変換する。
+const scrollerRef = ref(null)
+
+const onWheel = (e) => {
+  const el = scrollerRef.value
+  if (!el || el.scrollWidth <= el.clientWidth) return
+  if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return
+  el.scrollLeft += e.deltaY
+  e.preventDefault()
+}
+
+let dragging = false
+let dragStartX = 0
+let dragStartScroll = 0
+let dragMoved = false
+
+const suppressNextClick = (e) => {
+  e.preventDefault()
+  e.stopPropagation()
+}
+
+const onPointerDown = (e) => {
+  const el = scrollerRef.value
+  if (!el || e.pointerType === 'touch' || el.scrollWidth <= el.clientWidth) return
+  dragging = true
+  dragMoved = false
+  dragStartX = e.clientX
+  dragStartScroll = el.scrollLeft
+  el.setPointerCapture(e.pointerId)
+}
+
+const onPointerMove = (e) => {
+  if (!dragging) return
+  const el = scrollerRef.value
+  const dx = e.clientX - dragStartX
+  if (Math.abs(dx) > 3) dragMoved = true
+  el.scrollLeft = dragStartScroll - dx
+}
+
+const onPointerUp = () => {
+  if (!dragging) return
+  dragging = false
+  const el = scrollerRef.value
+  // ドラッグでクリックが誤爆してカード遷移しないようにする
+  if (dragMoved && el) {
+    el.addEventListener('click', suppressNextClick, { capture: true, once: true })
+  }
+}
 </script>
 
 <template>
@@ -38,7 +90,14 @@ const isSlider = computed(() => props.items.length > 1)
 
     <div
       v-if="items.length"
+      ref="scrollerRef"
       :class="['grid', compact && 'grid--compact', isSlider && 'grid--scroll']"
+      @wheel="onWheel"
+      @pointerdown="onPointerDown"
+      @pointermove="onPointerMove"
+      @pointerup="onPointerUp"
+      @pointerleave="onPointerUp"
+      @pointercancel="onPointerUp"
     >
       <ShowcaseCard
         v-for="(item, i) in items"
@@ -130,6 +189,12 @@ const isSlider = computed(() => props.items.length > 1)
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-bottom: 0.75rem;
+  cursor: grab;
+}
+
+.grid--scroll:active {
+  cursor: grabbing;
+  scroll-snap-type: none;
 }
 
 .grid--scroll::-webkit-scrollbar {

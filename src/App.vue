@@ -39,7 +39,10 @@ const isLoading = ref(true)
   <ScrollProgress />
   <SiteHeader :current="route" />
 
-  <main>
+  <!-- ローディング演出が終わってから本編をマウントし、
+       ヒーローの登場アニメーションがローディング画面の裏で
+       終わってしまわないようにする -->
+  <main v-if="!isLoading">
     <component :is="detailPage" v-if="detailPage" :key="route" />
     <SkillView v-else-if="route === '/skill'" />
     <GearView v-else-if="route === '/gear'" />
