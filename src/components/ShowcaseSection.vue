@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import RevealTitle from './RevealTitle.vue'
 import ShowcaseCard from './ShowcaseCard.vue'
 
@@ -76,6 +76,36 @@ const onPointerUp = () => {
     el.addEventListener('click', suppressNextClick, { capture: true, once: true })
   }
 }
+
+// ---- 矢印ボタンでのスライド操作 ----
+const canScrollPrev = ref(false)
+const canScrollNext = ref(false)
+
+const updateNavState = () => {
+  const el = scrollerRef.value
+  if (!el) return
+  canScrollPrev.value = el.scrollLeft > 4
+  canScrollNext.value = el.scrollLeft < el.scrollWidth - el.clientWidth - 4
+}
+
+const scrollByCard = (dir) => {
+  const el = scrollerRef.value
+  if (!el) return
+  const card = el.firstElementChild
+  const cardWidth = card ? card.getBoundingClientRect().width : el.clientWidth
+  const gap = parseFloat(getComputedStyle(el).columnGap) || 0
+  const maxScroll = el.scrollWidth - el.clientWidth
+  const target = Math.min(Math.max(el.scrollLeft + (cardWidth + gap) * dir, 0), maxScroll)
+  el.scrollTo({ left: target, behavior: 'smooth' })
+}
+
+onMounted(() => {
+  updateNavState()
+  window.addEventListener('resize', updateNavState)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateNavState)
+})
 </script>
 
 <template>
@@ -88,27 +118,51 @@ const onPointerUp = () => {
       <p v-if="subtitle" class="section__sub" v-reveal>{{ subtitle }}</p>
     </div>
 
-    <div
-      v-if="items.length"
-      ref="scrollerRef"
-      :class="['grid', compact && 'grid--compact', isSlider && 'grid--scroll']"
-      @wheel="onWheel"
-      @pointerdown="onPointerDown"
-      @pointermove="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointerleave="onPointerUp"
-      @pointercancel="onPointerUp"
-    >
-      <ShowcaseCard
-        v-for="(item, i) in items"
-        :key="item.url + i"
-        :item="item"
-        :variant="variant"
-        :index="i"
-        :base="base"
-        :cta="cta"
-        :compact="compact"
-      />
+    <div v-if="items.length" class="slider-wrap">
+      <div
+        ref="scrollerRef"
+        :class="['grid', compact && 'grid--compact', isSlider && 'grid--scroll']"
+        @wheel="onWheel"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointerleave="onPointerUp"
+        @pointercancel="onPointerUp"
+        @scroll="updateNavState"
+      >
+        <ShowcaseCard
+          v-for="(item, i) in items"
+          :key="`${item.slug || item.name}-${i}`"
+          :item="item"
+          :variant="variant"
+          :index="i"
+          :base="base"
+          :cta="cta"
+          :compact="compact"
+        />
+      </div>
+
+      <!-- 前後ボタン（複数件のスライダー時のみ表示） -->
+      <template v-if="isSlider">
+        <button
+          class="nav nav--prev"
+          type="button"
+          aria-label="前へ"
+          :disabled="!canScrollPrev"
+          @click="scrollByCard(-1)"
+        >
+          ‹
+        </button>
+        <button
+          class="nav nav--next"
+          type="button"
+          aria-label="次へ"
+          :disabled="!canScrollNext"
+          @click="scrollByCard(1)"
+        >
+          ›
+        </button>
+      </template>
     </div>
 
     <p v-else class="empty" v-reveal>{{ emptyText }}</p>
@@ -149,6 +203,68 @@ const onPointerUp = () => {
   max-width: 36rem;
   color: var(--text-muted);
   line-height: 1.7;
+}
+
+.slider-wrap {
+  position: relative;
+}
+
+/* ---- 前後ボタン（矢印） ---- */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--card) 80%, transparent);
+  backdrop-filter: blur(6px);
+  color: var(--text);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.nav--prev {
+  left: -0.5rem;
+}
+.nav--next {
+  right: -0.5rem;
+}
+
+.nav:hover:not(:disabled) {
+  background: var(--card);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.nav:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    width: 36px;
+    height: 36px;
+    font-size: 1.25rem;
+  }
+
+  .nav--prev {
+    left: 0.25rem;
+  }
+  .nav--next {
+    right: 0.25rem;
+  }
 }
 
 /* 1件だけのときは中央寄せで表示（複数件は grid--scroll がスライダーにする）。 */
