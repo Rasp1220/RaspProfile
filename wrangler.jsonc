@@ -1,5 +1,5 @@
 {
-  "name": "raspprofile",
+  "name": "rasp-profile",
   "compatibility_date": "2026-07-05",
   "assets": {
     "directory": "./dist",
