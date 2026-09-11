@@ -128,6 +128,8 @@ const websites = [
   },
   {
     name: 'Calnest',
+    slug: 'calnest',
+    description: 'Calnestについて紹介します。',
     accent: '#c2a37c', // ナチュラルベージュ
     tags: [],
     image: '/shots/calnest-icon.jpeg', // public/ に置いた画像を表示
