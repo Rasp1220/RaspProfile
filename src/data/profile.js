@@ -121,7 +121,7 @@ const websites = [
   {
     name: 'Notely',
     slug: 'notely',
-    description: 'タスク管理や議事録の作成を行うWebアプリです。',
+    description: 'プロジェクト単位でタスク管理と議事録作成ができるWebアプリです。',
     accent: '#6b8d9a', // セージグリーン
     tags: ['task', 'todo'],
     image: '/shots/notely-icon.png', // public/ に置いた画像を表示
@@ -129,17 +129,19 @@ const websites = [
   {
     name: 'Calnest',
     slug: 'calnest',
-    description: 'Calnestについて紹介します。',
+    description: '複数人で予定とメモを共有できるグループウェアです。',
     accent: '#c2a37c', // ナチュラルベージュ
-    tags: [],
+    tags: ['calendar', 'group'],
     image: '/shots/calnest-icon.jpeg', // public/ に置いた画像を表示
   },
   {
     name: 'ゆるかけ',
+    slug: 'yurukake',
     url: 'https://yurukake.himatsudo.com',
-    description: '目的に合ったお出かけスポットを検索できるサイトです',
+    description: '目的に合ったお出かけスポットを検索できるサイトです。',
     accent: '#5e8ba0', // ダスティブルー
-    tags: ['Web'],
+    tags: ['Web', 'blog'],
+    image: '/shots/yurukake-icon.webp', // public/ に置いた画像を表示
   },
 ]
 
