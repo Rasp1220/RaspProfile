@@ -8,11 +8,16 @@ const item = getDetailItem('web', 'calnest')
 const blocks = [
   {
     heading: '概要',
-    body: 'このサイトがどんなものかを書きます。',
+    body: 'Calnestについて紹介します。予定をやさしく整理できるカレンダーサービスです。',
   },
   {
-    heading: '主な機能',
-    body: '機能や特徴を紹介します。',
+    heading: 'トップページ',
+    body: '予定やイベントをカードでまとめて確認できるトップページです。',
+    image: '/shots/calnest-top.svg',
+  },
+  {
+    heading: '使っている技術',
+    body: '構成や技術スタックについて触れます。',
   },
 ]
 </script>

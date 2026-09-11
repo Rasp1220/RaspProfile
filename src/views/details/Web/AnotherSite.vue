@@ -8,12 +8,23 @@ const item = getDetailItem('web', 'another-site')
 const blocks = [
   {
     heading: '概要',
-    body: 'このサイトがどんなものかを書きます。',
+    body: 'ノリで作った占いサイトです。毎日の運勢を手軽にチェックできます。',
   },
   {
-    heading: '主な機能',
-    body: '機能や特徴を紹介します。',
-    // image: '/shots/another-site-feature.png',
+    heading: 'トップページ',
+    body: 'その日の気分でボタンを押すだけで占いを開始できます。',
+    image: '/shots/fortune-top.svg',
+  },
+  {
+    heading: '結果ページ',
+    body: '大吉から凶までの運勢をひと目でわかるように表示します。',
+    image: '/shots/fortune-result.svg',
+    reverse: true,
+  },
+  {
+    heading: '履歴ページ',
+    body: '過去に占った結果を一覧で振り返ることができます。',
+    image: '/shots/fortune-history.svg',
   },
 ]
 </script>

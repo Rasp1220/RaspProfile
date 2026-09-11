@@ -10,12 +10,18 @@ const item = getDetailItem('web', 'my-website')
 const blocks = [
   {
     heading: '概要',
-    body: 'このサイトがどんなものかを書きます。',
+    body: 'ひまつどサーバーの公式サイトです。サーバーの紹介やイベント情報を掲載しています。',
   },
   {
-    heading: '主な機能',
-    body: '機能や特徴を箇条書き的に紹介します。',
-    // image: '/shots/my-website-feature.png',
+    heading: 'トップページ',
+    body: 'サーバーの雰囲気が伝わるビジュアルと、直近のイベント情報をまとめて掲載しています。',
+    image: '/shots/himatsudo-top.svg',
+  },
+  {
+    heading: '記事詳細ページ',
+    body: 'お知らせやイベントレポートなど、個別の記事を読めるページです。',
+    image: '/shots/himatsudo-article.svg',
+    reverse: true,
   },
   {
     heading: '使っている技術',

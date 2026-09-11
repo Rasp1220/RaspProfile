@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5e8ba0" stop-opacity="0.20"/>
+      <stop offset="1" stop-color="#93b7c6" stop-opacity="0.06"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="600" fill="#12161c"/>
+  <rect x="0" y="44" width="800" height="556" fill="url(#bg)"/>
+  
+  <rect x="0" y="0" width="800" height="44" fill="#1e2530"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f57"/>
+  <circle cx="46" cy="22" r="6" fill="#febc2e"/>
+  <circle cx="68" cy="22" r="6" fill="#28c840"/>
+  <rect x="100" y="12" width="640" height="20" rx="10" fill="#2a3340"/>
+
+  <rect x="0" y="44" width="800" height="56" rx="0" fill="#171d26" opacity="1"/><text x="40" y="78" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="18" font-weight="600" fill="#93b7c6" text-anchor="start">ゆるかけ</text><rect x="40" y="120" width="720" height="200" rx="16" fill="#5e8ba0" opacity="0.3"/><text x="400.0" y="220" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="40" font-weight="600" fill="#ffffff" text-anchor="middle">📍</text><text x="60" y="360" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="22" font-weight="700" fill="#ffffff" text-anchor="start">休日にふらっと行ける穴場カフェ</text><text x="60" y="388" font-family="'Hiragino Sans','Noto Sans JP',sans-serif" font-size="13" font-weight="600" fill="#c7ced8" text-anchor="start">おでかけレポート</text><rect x="40" y="420" width="720" height="14" rx="7" fill="#3a4451" opacity="1"/><rect x="40" y="450" width="720" height="14" rx="7" fill="#3a4451" opacity="1"/><rect x="40" y="480" width="720" height="14" rx="7" fill="#3a4451" opacity="1"/><rect x="40" y="510" width="360.0" height="14" rx="7" fill="#3a4451" opacity="1"/>
+</svg>

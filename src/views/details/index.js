@@ -17,6 +17,7 @@ import WebMyWebsite from './Web/MyWebsite.vue'
 import WebAnotherSite from './Web/AnotherSite.vue'
 import WebNotely from './Web/Notely.vue'
 import WebCalnest from './Web/Calnest.vue'
+import WebYurukake from './Web/Yurukake.vue'
 import DiscordMyDiscordBot from './DiscordBot/MyDiscordBot.vue'
 import MinecraftMyPlugin from './MinecraftPlugins/MyPlugin.vue'
 import FiveMMyFiveMScript from './FiveM/MyFiveMScript.vue'
@@ -26,6 +27,7 @@ export const detailPages = {
   '/web/another-site': WebAnotherSite,
   '/web/notely': WebNotely,
   '/web/calnest': WebCalnest,
+  '/web/yurukake': WebYurukake,
   '/discord/my-discord-bot': DiscordMyDiscordBot,
   '/minecraft/my-plugin': MinecraftMyPlugin,
   '/fivem/my-fivem-script': FiveMMyFiveMScript,

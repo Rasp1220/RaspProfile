@@ -136,10 +136,12 @@ const websites = [
   },
   {
     name: 'ゆるかけ',
+    slug: 'yurukake',
     url: 'https://yurukake.himatsudo.com',
     description: '目的に合ったお出かけスポットを検索できるサイトです',
     accent: '#5e8ba0', // ダスティブルー
     tags: ['Web'],
+    image: '/shots/yurukake-top.svg', // public/ に置いた画像を表示
   },
 ]
 
