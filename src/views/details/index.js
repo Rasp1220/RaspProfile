@@ -18,8 +18,17 @@ import WebAnotherSite from './Web/AnotherSite.vue'
 import WebNotely from './Web/Notely.vue'
 import WebCalnest from './Web/Calnest.vue'
 import WebYurukake from './Web/Yurukake.vue'
-import DiscordMyDiscordBot from './DiscordBot/MyDiscordBot.vue'
-import MinecraftMyPlugin from './MinecraftPlugins/MyPlugin.vue'
+import WebServiceStatus from './Web/ServiceStatus.vue'
+import WebMcVersionManager from './Web/McVersionManager.vue'
+import DiscordDisasterBot from './DiscordBot/DisasterBot.vue'
+import DiscordMcDiscordBridge from './DiscordBot/McDiscordBridge.vue'
+import MinecraftHimatsudoLife from './MinecraftPlugins/HimatsudoLife.vue'
+import MinecraftHimatsudoBoss from './MinecraftPlugins/HimatsudoBoss.vue'
+import MinecraftHousingMC from './MinecraftPlugins/HousingMC.vue'
+import MinecraftHimaCasino from './MinecraftPlugins/HimaCasino.vue'
+import MinecraftOnigokko from './MinecraftPlugins/Onigokko.vue'
+import MinecraftGriefDetector from './MinecraftPlugins/GriefDetector.vue'
+import MinecraftHimatsudoCore from './MinecraftPlugins/HimatsudoCore.vue'
 import FiveMMyFiveMScript from './FiveM/MyFiveMScript.vue'
 
 export const detailPages = {
@@ -28,8 +37,17 @@ export const detailPages = {
   '/web/notely': WebNotely,
   '/web/calnest': WebCalnest,
   '/web/yurukake': WebYurukake,
-  '/discord/my-discord-bot': DiscordMyDiscordBot,
-  '/minecraft/my-plugin': MinecraftMyPlugin,
+  '/web/server-status': WebServiceStatus,
+  '/web/mc-version-manager': WebMcVersionManager,
+  '/discord/weather-bot': DiscordDisasterBot,
+  '/discord/mc-discord-bridge': DiscordMcDiscordBridge,
+  '/minecraft/himatsudo-life': MinecraftHimatsudoLife,
+  '/minecraft/himatsudo-boss': MinecraftHimatsudoBoss,
+  '/minecraft/housing-mc': MinecraftHousingMC,
+  '/minecraft/hima-casino': MinecraftHimaCasino,
+  '/minecraft/onigokko': MinecraftOnigokko,
+  '/minecraft/grief-detector': MinecraftGriefDetector,
+  '/minecraft/himatsudo-core': MinecraftHimatsudoCore,
   '/fivem/my-fivem-script': FiveMMyFiveMScript,
 }
 

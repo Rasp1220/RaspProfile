@@ -143,36 +143,110 @@ const websites = [
     tags: ['Web', 'blog'],
     image: '/shots/yurukake-icon.webp', // public/ に置いた画像を表示
   },
+  {
+    name: 'ひまつどステータス',
+    slug: 'server-status',
+    description: 'himatsudo.com 関連サービスの稼働状況を確認できるステータスページです。',
+    accent: '#4f9d7a',
+    tags: ['Next.js', 'status'],
+    image: '/shots/placeholders/server-status-icon.svg', // 仮画像
+  },
+  {
+    name: 'MC Version Manager',
+    slug: 'mc-version-manager',
+    description: 'Minecraftサーバーコアとプラグインのバージョンを一元管理・監視するWebアプリです。',
+    accent: '#5e7fb0',
+    tags: ['Node.js', 'tool'],
+    image: '/shots/placeholders/mc-version-manager-icon.svg', // 仮画像
+  },
 ]
 
 // 運用 / 開発している Discord Bot
 const discordBots = [
   {
-    name: 'My Discord Bot',
-    slug: 'my-discord-bot',
-    url: 'https://discord.com/',
-    description: 'Botでできることを説明します。',
-    emoji: '🤖',
-    // Bot のアバター画像。公開 URL か public/ に置いたパスを指定します。
-    // 自分のBotの画像に差し替えてください。
-    image: '/icons/bot-default.jpg',
-    accent: '#5865F2', // Discord ブルー
-    tags: ['Moderation', 'Music'],
-    // 任意の数値（サーバー数など）。空にすると非表示
-    stat: '1,200 servers',
+    name: '防災・気象情報Bot',
+    slug: 'weather-bot',
+    description: '地震速報・気象警報を地方別メンションで自動通知し、天気も確認できます。',
+    emoji: '🌦️',
+    image: '/shots/placeholders/weather-bot-icon.svg', // 仮画像
+    accent: '#4a90b8',
+    tags: ['TypeScript', 'discord.js'],
+  },
+  {
+    name: 'MC Discord Bridge',
+    slug: 'mc-discord-bridge',
+    description: 'MinecraftとDiscordのチャット同期・起動停止通知・各種連携を行います。',
+    emoji: '🔗',
+    image: '/shots/placeholders/mc-discord-bridge-icon.svg', // 仮画像
+    accent: '#5865F2',
+    tags: ['Python', 'Java'],
   },
 ]
 
 // 作っている Minecraft Plugin
 const minecraftPlugins = [
   {
-    name: 'coming soon...',
-    slug: 'my-plugin',
-    url: 'https://www.spigotmc.org/',
-    description: 'coming soon...',
-    emoji: '🧱',
-    accent: '#7d9b6f', // モスグリーン
-    tags: [],
+    name: 'HimatsudoLife',
+    slug: 'himatsudo-life',
+    description: '土地保護・銀行・実績・スキルなどをまとめた生活サーバー向け総合プラグインです。',
+    emoji: '🏡',
+    accent: '#c98a5e',
+    tags: ['Paper', 'Life'],
+    image: '/shots/placeholders/himatsudo-life-icon.svg', // 仮画像
+  },
+  {
+    name: 'HimatsudoBoss',
+    slug: 'himatsudo-boss',
+    description: '予告付きの技をかわして戦う、独自ボス専用プラグインです。',
+    emoji: '👹',
+    accent: '#a8505a',
+    tags: ['Paper', 'Boss'],
+    image: '/shots/placeholders/himatsudo-boss-icon.svg', // 仮画像
+  },
+  {
+    name: 'HousingMC',
+    slug: 'housing-mc',
+    description: '474種の3D家具を作って置いて使えるハウジング・家具システムです。',
+    emoji: '🛋️',
+    accent: '#b08a5a',
+    tags: ['Paper', 'Housing'],
+    image: '/shots/placeholders/housing-mc-icon.svg', // 仮画像
+  },
+  {
+    name: 'HimaCasino',
+    slug: 'hima-casino',
+    description: 'スロットやポーカーなど6種類を遊べるカジノプラグインです。',
+    emoji: '🎰',
+    accent: '#b8456b',
+    tags: ['Purpur', 'Casino'],
+    image: '/shots/placeholders/hima-casino-icon.svg', // 仮画像
+  },
+  {
+    name: 'Onigokko',
+    slug: 'onigokko',
+    description: '3つのモードで遊べる鬼ごっこプラグインです。',
+    emoji: '🏃',
+    accent: '#d0803c',
+    tags: ['Paper', 'Game'],
+    image: '/shots/placeholders/onigokko-icon.svg', // 仮画像
+  },
+  {
+    name: 'GriefDetector',
+    slug: 'grief-detector',
+    description: '荒らし行為を検知してDiscordへ即通知するプラグインです。',
+    emoji: '🚨',
+    accent: '#c0504d',
+    tags: ['Paper', 'Security'],
+    image: '/shots/placeholders/grief-detector-icon.svg', // 仮画像
+  },
+  {
+    name: 'HimatsudoCore',
+    slug: 'himatsudo-core',
+    description: 'サーバー基盤機能をモジュールでまとめたコアプラグインです。',
+    emoji: '⚙️',
+    accent: '#6d7fa6',
+    tags: ['Spigot', 'Core'],
+    image: '/shots/placeholders/himatsudo-core-icon.svg', // 仮画像
   },
 ]
 

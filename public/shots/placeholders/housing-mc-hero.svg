@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b08a5a"/><stop offset="1" stop-color="#2b2f3a"/></linearGradient></defs>
+  <rect width="1600" height="900" fill="url(#g)"/>
+  <text x="800" y="450" font-size="300" text-anchor="middle" dominant-baseline="middle">🛋️</text>
+  <text x="800" y="675" font-family="system-ui, sans-serif" font-size="64" font-weight="700" fill="#fff" text-anchor="middle">HousingMC</text>
+  <text x="800" y="836" font-family="system-ui, sans-serif" font-size="32" fill="#ffffffaa" text-anchor="middle">PLACEHOLDER IMAGE</text>
+</svg>
