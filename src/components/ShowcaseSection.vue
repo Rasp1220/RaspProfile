@@ -403,6 +403,8 @@ onBeforeUnmount(() => {
 
   /* コンパクトカード（アイコン＋名前）：アイコンサイズをカード幅に合わせる */
   .grid--scroll.grid--compact > * {
+    /* 画像の元サイズ（SVG等）に幅を引っ張られないよう、2つ並ぶ幅を明示する */
+    flex: 0 0 calc((100% - 0.75rem) / 2);
     min-width: 0;
     max-width: none;
   }
