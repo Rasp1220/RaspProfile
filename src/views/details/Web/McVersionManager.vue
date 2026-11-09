@@ -22,7 +22,7 @@ const blocks = [
   },
   {
     heading: '使っている技術',
-    body: 'バックエンドは Node.js + SQLite、フロントエンドは Vite ベースのSPAです。GitHub API のレート制限対策としてトークンも設定できます。',
+    body: 'バックエンドは Node.js（Express + better-sqlite3 + node-cron）、フロントエンドは Vue 3 + Vite です。GitHub API のレート制限対策としてトークンも設定できます。',
     image: '/shots/placeholders/mc-version-manager-hero.svg', // 仮画像（差し替え予定）
     imageAlt: '使っている技術（仮画像）',
   },
